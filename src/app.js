@@ -77,7 +77,8 @@ function stopTimer() {
 
 function renderQuestion() {
   resetFeedback();
-  ui.locked = false;
+  gameState.locked = false;
+
 
   const questions = getCurrentSet();
   const q = questions[gameState.questionIndex];
@@ -121,6 +122,8 @@ function selectAnswer(isCorrect, correctAnswer) {
 
   // next
   setTimeout(() => {
+    gameState.locked = false;
+
     gameState.questionIndex += 1;
 
     const currentSet = getCurrentSet();
@@ -151,7 +154,9 @@ function handleTimeout() {
   setFeedback(`Waktu habis ⏲️. Jawaban yang benar: ${correct}`, 'wrong');
 
   setTimeout(() => {
+    gameState.locked = false;
     gameState.questionIndex += 1;
+
 
     const currentSet = getCurrentSet();
     if (gameState.questionIndex >= currentSet.length) {
