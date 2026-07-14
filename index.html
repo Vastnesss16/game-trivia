@@ -9,19 +9,26 @@
 <body>
     <div class="game-container">
         <h1>Kuis Trivia</h1>
+        <div id="meta-bar">
+            <div id="level-badge" class="badge">Level: -</div>
+            <div class="meta-right">
+                <div id="score-display" class="meta-item">Skor: 0</div>
+                <div id="timer-display" class="meta-item">⏱️ 15s</div>
+            </div>
+        </div>
         <div id="quiz-box">
             <h2 id="question">Pertanyaan akan muncul di sini</h2>
-            <div id="answer-buttons" class="btn-grid">
-                </div>
+            <p id="hint" class="hint">Jawablah dengan memilih terjemahan yang benar.</p>
+            <div id="answer-buttons" class="btn-grid"></div>
+            <div id="feedback" class="feedback hide" aria-live="polite"></div>
         </div>
         <div id="score-box" class="hide">
             <h2>Game Selesai!</h2>
             <p id="final-score">Skor kamu: 0</p>
-            <button id="restart-btn" onclick="startUrl()">Main Lagi</button>
+            <button id="restart-btn" type="button">Main Lagi</button>
         </div>
     </div>
 
-    <script href="script.js"></script>
     <script type="module" src="src/app.js"></script>
 </body>
 </html>
