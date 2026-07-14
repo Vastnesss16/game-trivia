@@ -13,12 +13,19 @@ const ui = {
 
   scoreBox: document.getElementById('score-box'),
   finalScoreEl: document.getElementById('final-score'),
-  restartBtn: document.getElementById('restart-btn')
+  restartBtn: document.getElementById('restart-btn'),
+
+  levelCompleteBox: document.getElementById('level-complete-box'),
+  levelCompleteTitle: document.getElementById('level-complete-title'),
+  levelCompleteSubtitle: document.getElementById('level-complete-subtitle'),
+  playAgainBtn: document.getElementById('play-again-btn'),
+  nextLevelBtn: document.getElementById('next-level-btn')
 };
 
 const LEVELS = [
   { key: 'mudah', label: 'Mudah', points: 10 },
-  { key: 'sedang', label: 'Sedang', points: 15 }
+  { key: 'sedang', label: 'Sedang', points: 15 },
+  { key: 'sulit', label: 'Sulit', points: 20 }
 ];
 
 const gameState = {
@@ -75,10 +82,18 @@ function stopTimer() {
   gameState.timerId = null;
 }
 
+function shuffle(array) {
+  const a = array.slice();
+  for (let i = a.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function renderQuestion() {
   resetFeedback();
   gameState.locked = false;
-
 
   const questions = getCurrentSet();
   const q = questions[gameState.questionIndex];
@@ -92,7 +107,8 @@ function renderQuestion() {
   ui.hintEl.textContent = "Jawaban pilihan: pilih terjemahan bahasa Indonesianya.";
   ui.answerButtonsEl.innerHTML = '';
 
-  q.answers.forEach((answer) => {
+  const shuffledAnswers = shuffle(q.answers);
+  shuffledAnswers.forEach((answer) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.textContent = answer;
@@ -129,8 +145,18 @@ function selectAnswer(isCorrect, correctAnswer) {
     const currentSet = getCurrentSet();
     if (gameState.questionIndex >= currentSet.length) {
       // move to next level
+      const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
+
       gameState.levelIndex += 1;
       gameState.questionIndex = 0;
+
+      // Jika baru saja menyelesaikan level mudah, tampilkan pilihan
+      if (finishedLevelKey === 'mudah') {
+        stopTimer();
+        hideLevelComplete();
+        showLevelComplete();
+        return;
+      }
 
       if (gameState.levelIndex >= LEVELS.length) {
         endGame();
@@ -160,8 +186,17 @@ function handleTimeout() {
 
     const currentSet = getCurrentSet();
     if (gameState.questionIndex >= currentSet.length) {
+      const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
+
       gameState.levelIndex += 1;
       gameState.questionIndex = 0;
+
+      if (finishedLevelKey === 'mudah') {
+        stopTimer();
+        hideLevelComplete();
+        showLevelComplete();
+        return;
+      }
 
       if (gameState.levelIndex >= LEVELS.length) {
         endGame();
@@ -173,6 +208,21 @@ function handleTimeout() {
     renderQuestion();
     startTimer();
   }, 950);
+}
+
+function showLevelComplete() {
+  // hanya untuk level mudah saat berpindah setelah soal terakhir
+  ui.quizBox.classList.add('hide');
+  ui.levelCompleteBox.classList.remove('hide');
+
+  const level = LEVELS[gameState.levelIndex];
+  ui.levelCompleteTitle.textContent = `Level ${level.label} Selesai!`;
+  ui.levelCompleteSubtitle.textContent = `Skor sementara: ${gameState.score}`;
+}
+
+function hideLevelComplete() {
+  ui.levelCompleteBox.classList.add('hide');
+  ui.quizBox.classList.remove('hide');
 }
 
 function endGame() {
@@ -197,6 +247,22 @@ function startGame() {
 }
 
 ui.restartBtn?.addEventListener('click', startGame);
+
+ui.playAgainBtn?.addEventListener('click', () => {
+  // kembali ke level mudah
+  hideLevelComplete();
+  gameState.levelIndex = 0;
+  gameState.questionIndex = 0;
+  startGame();
+});
+
+ui.nextLevelBtn?.addEventListener('click', () => {
+  // lanjut dari level sedang (karena levelIndex sudah di-increment saat selesai mudah)
+  hideLevelComplete();
+  renderLevelAndMeta();
+  renderQuestion();
+  startTimer();
+});
 
 startGame();
 
