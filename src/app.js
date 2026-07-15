@@ -156,6 +156,7 @@ function selectAnswer(isCorrect, correctAnswer) {
 
     if (gameState.questionIndex >= gameState.levelQuestions.length) {
 
+
       // move to next level
       const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
 
@@ -268,11 +269,11 @@ function startGame() {
 ui.restartBtn?.addEventListener('click', startGame);
 
 ui.playAgainBtn?.addEventListener('click', () => {
-  // kembali ke level mudah
+  // kembali ke level mudah (start fresh, shuffle lagi)
   hideLevelComplete();
-  gameState.levelIndex = 0;
   startGame();
 });
+
 
 
 
