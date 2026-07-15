@@ -34,13 +34,25 @@ const gameState = {
   score: 0,
   timeLeft: 15,
   timerId: null,
-  locked: false
+  locked: false,
+  // kumpulan soal yang sudah dipilih untuk level saat ini (acak sekali saat level dimulai)
+  // dan berisi tepat 10 soal yang akan ditampilkan
+  levelQuestions: []
 };
 
 function getCurrentSet() {
   const level = LEVELS[gameState.levelIndex];
   return triviaQuestions[level.key] || [];
 }
+
+function initLevelQuestions() {
+  const all = getCurrentSet();
+  const picked = shuffle(all).slice(0, 10);
+  gameState.levelQuestions = picked;
+  gameState.questionIndex = 0;
+}
+
+
 
 function resetFeedback() {
   ui.feedbackEl.classList.add('hide');
@@ -95,8 +107,7 @@ function renderQuestion() {
   resetFeedback();
   gameState.locked = false;
 
-  const questions = getCurrentSet();
-  const q = questions[gameState.questionIndex];
+  const q = gameState.levelQuestions[gameState.questionIndex];
 
   if (!q) {
     endGame();
@@ -124,6 +135,7 @@ function renderQuestion() {
   });
 }
 
+
 function selectAnswer(isCorrect, correctAnswer) {
   stopTimer();
 
@@ -142,8 +154,8 @@ function selectAnswer(isCorrect, correctAnswer) {
 
     gameState.questionIndex += 1;
 
-    const currentSet = getCurrentSet();
-    if (gameState.questionIndex >= currentSet.length) {
+    if (gameState.questionIndex >= gameState.levelQuestions.length) {
+
       // move to next level
       const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
 
@@ -164,18 +176,23 @@ function selectAnswer(isCorrect, correctAnswer) {
       }
     }
 
+    initLevelQuestions();
     renderLevelAndMeta();
+
+
     renderQuestion();
     startTimer();
   }, 900);
 }
 
+
+
 function handleTimeout() {
   gameState.locked = true;
 
-  const questions = getCurrentSet();
-  const q = questions[gameState.questionIndex];
+  const q = gameState.levelQuestions[gameState.questionIndex];
   const correct = q ? q.correct : '';
+
 
   setFeedback(`Waktu habis ⏲️. Jawaban yang benar: ${correct}`, 'wrong');
 
@@ -184,8 +201,8 @@ function handleTimeout() {
     gameState.questionIndex += 1;
 
 
-    const currentSet = getCurrentSet();
-    if (gameState.questionIndex >= currentSet.length) {
+    if (gameState.questionIndex >= gameState.levelQuestions.length) {
+
       const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
 
       gameState.levelIndex += 1;
@@ -241,10 +258,12 @@ function startGame() {
   ui.scoreBox.classList.add('hide');
   ui.quizBox.classList.remove('hide');
 
+  initLevelQuestions();
   renderLevelAndMeta();
   renderQuestion();
   startTimer();
 }
+
 
 ui.restartBtn?.addEventListener('click', startGame);
 
@@ -252,17 +271,24 @@ ui.playAgainBtn?.addEventListener('click', () => {
   // kembali ke level mudah
   hideLevelComplete();
   gameState.levelIndex = 0;
-  gameState.questionIndex = 0;
   startGame();
 });
+
+
 
 ui.nextLevelBtn?.addEventListener('click', () => {
   // lanjut dari level sedang (karena levelIndex sudah di-increment saat selesai mudah)
   hideLevelComplete();
+  initLevelQuestions();
   renderLevelAndMeta();
+
   renderQuestion();
   startTimer();
 });
+
+
+
+
 
 startGame();
 
