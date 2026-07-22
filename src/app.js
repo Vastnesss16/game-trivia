@@ -155,31 +155,15 @@ function selectAnswer(isCorrect, correctAnswer) {
     gameState.questionIndex += 1;
 
     if (gameState.questionIndex >= gameState.levelQuestions.length) {
-
-
-      // move to next level
-      const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
-
+      const completedLevelIndex = gameState.levelIndex;
       gameState.levelIndex += 1;
       gameState.questionIndex = 0;
 
-      // Jika baru saja menyelesaikan level mudah, tampilkan pilihan
-      if (finishedLevelKey === 'mudah') {
-        stopTimer();
-        hideLevelComplete();
-        showLevelComplete();
-        return;
-      }
-
-      if (gameState.levelIndex >= LEVELS.length) {
-        endGame();
-        return;
-      }
+      stopTimer();
+      hideLevelComplete();
+      showLevelComplete(completedLevelIndex);
+      return;
     }
-
-    initLevelQuestions();
-    renderLevelAndMeta();
-
 
     renderQuestion();
     startTimer();
@@ -203,39 +187,32 @@ function handleTimeout() {
 
 
     if (gameState.questionIndex >= gameState.levelQuestions.length) {
-
-      const finishedLevelKey = LEVELS[gameState.levelIndex]?.key;
-
+      const completedLevelIndex = gameState.levelIndex;
       gameState.levelIndex += 1;
       gameState.questionIndex = 0;
 
-      if (finishedLevelKey === 'mudah') {
-        stopTimer();
-        hideLevelComplete();
-        showLevelComplete();
-        return;
-      }
-
-      if (gameState.levelIndex >= LEVELS.length) {
-        endGame();
-        return;
-      }
+      stopTimer();
+      hideLevelComplete();
+      showLevelComplete(completedLevelIndex);
+      return;
     }
 
-    renderLevelAndMeta();
     renderQuestion();
     startTimer();
   }, 950);
 }
 
-function showLevelComplete() {
-  // hanya untuk level mudah saat berpindah setelah soal terakhir
+function showLevelComplete(completedLevelIndex) {
   ui.quizBox.classList.add('hide');
   ui.levelCompleteBox.classList.remove('hide');
 
-  const level = LEVELS[gameState.levelIndex];
-  ui.levelCompleteTitle.textContent = `Level ${level.label} Selesai!`;
+  const completedLevel = LEVELS[completedLevelIndex];
+  ui.levelCompleteTitle.textContent = `Level ${completedLevel.label} Selesai!`;
   ui.levelCompleteSubtitle.textContent = `Skor sementara: ${gameState.score}`;
+
+  // Jika ini level terakhir (Sulit), sembunyikan tombol "Selanjutnya"
+  const isLastLevel = (completedLevelIndex >= LEVELS.length - 1);
+  ui.nextLevelBtn.classList.toggle('hide', isLastLevel);
 }
 
 function hideLevelComplete() {
@@ -269,9 +246,9 @@ function startGame() {
 ui.restartBtn?.addEventListener('click', startGame);
 
 ui.playAgainBtn?.addEventListener('click', () => {
-  // kembali ke level mudah (start fresh, shuffle lagi)
+  // Selesai: akhiri game dan tampilkan skor akhir
   hideLevelComplete();
-  startGame();
+  endGame();
 });
 
 
