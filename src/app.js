@@ -1,45 +1,139 @@
 import { triviaQuestions } from './question.js';
 
+// ===== UI ELEMENTS =====
 const ui = {
   levelBadge: document.getElementById('level-badge'),
-  scoreDisplay: document.getElementById('score-display'),
-  timerDisplay: document.getElementById('timer-display'),
+  scoreDisplay: document.getElementById('score-value'),
+  timerProgress: document.getElementById('timer-progress'),
+  timerText: document.getElementById('timer-text'),
 
   quizBox: document.getElementById('quiz-box'),
   questionEl: document.getElementById('question'),
+  questionNumber: document.getElementById('question-number'),
   answerButtonsEl: document.getElementById('answer-buttons'),
   hintEl: document.getElementById('hint'),
   feedbackEl: document.getElementById('feedback'),
 
+  progressFill: document.getElementById('progress-fill'),
+  progressLabel: document.getElementById('progress-label'),
+  progressLevelName: document.getElementById('progress-level-name'),
+
   scoreBox: document.getElementById('score-box'),
   finalScoreEl: document.getElementById('final-score'),
+  scoreEmoji: document.getElementById('score-emoji'),
+  scoreGrade: document.getElementById('score-grade'),
+  scoreStars: document.getElementById('score-stars'),
+  finalLevel: document.getElementById('final-level'),
+  finalCorrect: document.getElementById('final-correct'),
+  finalTotal: document.getElementById('final-total'),
   restartBtn: document.getElementById('restart-btn'),
 
   levelCompleteBox: document.getElementById('level-complete-box'),
   levelCompleteTitle: document.getElementById('level-complete-title'),
   levelCompleteSubtitle: document.getElementById('level-complete-subtitle'),
+  levelCompleteScores: document.getElementById('level-complete-scores'),
   playAgainBtn: document.getElementById('play-again-btn'),
-  nextLevelBtn: document.getElementById('next-level-btn')
+  nextLevelBtn: document.getElementById('next-level-btn'),
+
+  leaderboardBody: document.getElementById('leaderboard-body'),
+  clearLeaderboardBtn: document.getElementById('clear-leaderboard-btn'),
+
+  achievementOverlay: document.getElementById('achievement-overlay'),
+  achievementScore: document.getElementById('achievement-score'),
+  achievementCloseBtn: document.getElementById('achievement-close-btn'),
+  confettiContainer: document.getElementById('confetti-container'),
 };
 
+// ===== CONSTANTS =====
 const LEVELS = [
   { key: 'mudah', label: 'Mudah', points: 10 },
   { key: 'sedang', label: 'Sedang', points: 15 },
   { key: 'sulit', label: 'Sulit', points: 20 }
 ];
 
+const QUESTIONS_PER_LEVEL = 10;
+const TIMER_SECONDS = 15;
+const CIRCUMFERENCE = 2 * Math.PI * 15.9155; // ~100
+
+const STORAGE_KEY = 'trivia_leaderboard';
+const MAX_LEADERBOARD = 10;
+
+// ===== GAME STATE =====
 const gameState = {
   levelIndex: 0,
   questionIndex: 0,
   score: 0,
-  timeLeft: 15,
+  correctCount: 0,
+  totalAnswered: 0,
+  overallCorrectCount: 0,
+  overallTotalAnswered: 0,
+  timeLeft: TIMER_SECONDS,
   timerId: null,
   locked: false,
-  // kumpulan soal yang sudah dipilih untuk level saat ini (acak sekali saat level dimulai)
-  // dan berisi tepat 10 soal yang akan ditampilkan
-  levelQuestions: []
+  levelQuestions: [],
+  isNewHighScore: false,
 };
 
+// ===== LEADERBOARD =====
+function getLeaderboard() {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLeaderboard(entry) {
+  const board = getLeaderboard();
+  board.push(entry);
+  board.sort((a, b) => b.score - a.score);
+  const trimmed = board.slice(0, MAX_LEADERBOARD);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
+}
+
+function isNewHighScore(score) {
+  const board = getLeaderboard();
+  // Jika belum ada skor, skor berapapun jadi high score
+  if (board.length === 0) return true;
+  // Jika skor melebihi skor tertinggi (#1)
+  return score > board[0].score;
+}
+
+function renderLeaderboard(currentScore = null) {
+  const board = getLeaderboard();
+  ui.leaderboardBody.innerHTML = '';
+
+  if (board.length === 0) {
+    ui.leaderboardBody.innerHTML = '<div class="leaderboard-empty">Belum ada skor. Jadilah yang pertama!</div>';
+    return;
+  }
+
+  board.forEach((entry, i) => {
+    const isCurrent = currentScore !== null && entry.score === currentScore &&
+                      entry.date === new Date().toLocaleDateString('id-ID');
+
+    const item = document.createElement('div');
+    item.className = `leaderboard-item${isCurrent ? ' current-player' : ''}`;
+
+    const rankClass = i === 0 ? 'top-1' : i === 1 ? 'top-2' : i === 2 ? 'top-3' : '';
+    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i + 1}`;
+
+    item.innerHTML = `
+      <div class="leaderboard-rank ${rankClass}">${medal}</div>
+      <div class="leaderboard-score">${entry.score}</div>
+      <div class="leaderboard-info">
+        <div class="leaderboard-level">Level ${entry.level}</div>
+        <div class="leaderboard-date">${entry.date}</div>
+      </div>
+      ${isCurrent ? '<span class="leaderboard-badge-new">Baru</span>' : ''}
+    `;
+
+    ui.leaderboardBody.appendChild(item);
+  });
+}
+
+// ===== HELPERS =====
 function getCurrentSet() {
   const level = LEVELS[gameState.levelIndex];
   return triviaQuestions[level.key] || [];
@@ -47,40 +141,31 @@ function getCurrentSet() {
 
 function initLevelQuestions() {
   const all = getCurrentSet();
-  const picked = shuffle(all).slice(0, 10);
+  const picked = shuffle(all).slice(0, QUESTIONS_PER_LEVEL);
   gameState.levelQuestions = picked;
   gameState.questionIndex = 0;
+  gameState.totalAnswered = 0;
+  gameState.correctCount = 0;
 }
 
-
-
-function resetFeedback() {
-  ui.feedbackEl.classList.add('hide');
-  ui.feedbackEl.classList.remove('correct', 'wrong');
-  ui.feedbackEl.textContent = '';
+function shuffle(array) {
+  const a = array.slice();
+  for (let i = a.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
-function setFeedback(message, type) {
-  ui.feedbackEl.textContent = message;
-  ui.feedbackEl.classList.remove('hide');
-  ui.feedbackEl.classList.remove('correct', 'wrong');
-  ui.feedbackEl.classList.add(type);
-}
-
-function renderLevelAndMeta() {
-  const level = LEVELS[gameState.levelIndex];
-  ui.levelBadge.textContent = `Level: ${level.label}`;
-  ui.scoreDisplay.textContent = `Skor: ${gameState.score}`;
-}
-
+// ===== TIMER =====
 function startTimer() {
   stopTimer();
-  gameState.timeLeft = 15;
-  ui.timerDisplay.textContent = `⏱️ ${gameState.timeLeft}s`;
+  gameState.timeLeft = TIMER_SECONDS;
+  updateTimerDisplay();
 
   gameState.timerId = setInterval(() => {
     gameState.timeLeft -= 1;
-    ui.timerDisplay.textContent = `⏱️ ${gameState.timeLeft}s`;
+    updateTimerDisplay();
 
     if (gameState.timeLeft <= 0) {
       stopTimer();
@@ -94,13 +179,49 @@ function stopTimer() {
   gameState.timerId = null;
 }
 
-function shuffle(array) {
-  const a = array.slice();
-  for (let i = a.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+function updateTimerDisplay() {
+  const progress = gameState.timeLeft / TIMER_SECONDS;
+  const offset = CIRCUMFERENCE * (1 - progress);
+  ui.timerProgress.style.strokeDasharray = `${CIRCUMFERENCE - offset} ${CIRCUMFERENCE}`;
+  ui.timerText.textContent = gameState.timeLeft;
+
+  // Warning color
+  if (gameState.timeLeft <= 5) {
+    ui.timerProgress.style.stroke = '#e74c3c';
+    ui.timerText.classList.add('warning');
+  } else {
+    ui.timerProgress.style.stroke = '#667eea';
+    ui.timerText.classList.remove('warning');
   }
-  return a;
+}
+
+// ===== FEEDBACK =====
+function resetFeedback() {
+  ui.feedbackEl.classList.add('hide');
+  ui.feedbackEl.classList.remove('correct', 'wrong');
+  ui.feedbackEl.textContent = '';
+}
+
+function setFeedback(message, type) {
+  ui.feedbackEl.textContent = message;
+  ui.feedbackEl.classList.remove('hide', 'correct', 'wrong');
+  ui.feedbackEl.classList.add(type);
+}
+
+// ===== RENDER =====
+function renderLevelAndMeta() {
+  const level = LEVELS[gameState.levelIndex];
+  ui.levelBadge.textContent = `Level: ${level.label}`;
+  ui.scoreDisplay.textContent = gameState.score;
+  ui.progressLevelName.textContent = level.label;
+}
+
+function updateProgressBar() {
+  const total = gameState.levelQuestions.length;
+  const current = gameState.questionIndex + 1;
+  const pct = Math.min((gameState.questionIndex) / total * 100, 100);
+  ui.progressFill.style.width = `${pct}%`;
+  ui.progressLabel.textContent = `Soal ${Math.min(current, total)}/${total}`;
 }
 
 function renderQuestion() {
@@ -114,49 +235,72 @@ function renderQuestion() {
     return;
   }
 
+  ui.questionNumber.textContent = `Soal #${gameState.questionIndex + 1}`;
   ui.questionEl.textContent = q.question;
-  ui.hintEl.textContent = "Jawaban pilihan: pilih terjemahan bahasa Indonesianya.";
+  ui.hintEl.textContent = "Pilih jawaban yang benar di bawah ini.";
   ui.answerButtonsEl.innerHTML = '';
+
+  updateProgressBar();
 
   const shuffledAnswers = shuffle(q.answers);
   shuffledAnswers.forEach((answer) => {
     const btn = document.createElement('button');
     btn.type = 'button';
+    btn.className = 'answer-btn';
     btn.textContent = answer;
 
     btn.addEventListener('click', () => {
       if (gameState.locked) return;
       gameState.locked = true;
       const isCorrect = answer === q.correct;
-      selectAnswer(isCorrect, q.correct);
+      selectAnswer(isCorrect, q.correct, q.answers, btn);
     });
 
     ui.answerButtonsEl.appendChild(btn);
   });
+
+  startTimer();
 }
 
-
-function selectAnswer(isCorrect, correctAnswer) {
+// ===== SELECT ANSWER =====
+function selectAnswer(isCorrect, correctAnswer, allAnswers, selectedBtn) {
   stopTimer();
+  gameState.totalAnswered++;
 
   const level = LEVELS[gameState.levelIndex];
+
+  // Disable all buttons & reveal correct/wrong
+  const buttons = ui.answerButtonsEl.querySelectorAll('.answer-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correctAnswer) {
+      btn.classList.add('correct-reveal');
+    } else if (btn === selectedBtn && !isCorrect) {
+      btn.classList.add('wrong-reveal');
+    }
+  });
+
   if (isCorrect) {
     gameState.score += level.points;
-    ui.scoreDisplay.textContent = `Skor: ${gameState.score}`;
-    setFeedback('Correct! ✅', 'correct');
+    gameState.correctCount++;
+    gameState.overallCorrectCount++;
+    ui.scoreDisplay.textContent = gameState.score;
+    setFeedback('Benar! ✅', 'correct');
   } else {
-    setFeedback(`Salah ❌. Jawaban yang benar: ${correctAnswer}`, 'wrong');
+    setFeedback(`Salah ❌. Jawaban: ${correctAnswer}`, 'wrong');
   }
 
-  // next
+  gameState.overallTotalAnswered++;
+
+  // Next question after delay
   setTimeout(() => {
     gameState.locked = false;
 
-    gameState.questionIndex += 1;
+    gameState.questionIndex++;
 
     if (gameState.questionIndex >= gameState.levelQuestions.length) {
       const completedLevelIndex = gameState.levelIndex;
-      gameState.levelIndex += 1;
+      gameState.levelIndex++;
       gameState.questionIndex = 0;
 
       stopTimer();
@@ -166,29 +310,37 @@ function selectAnswer(isCorrect, correctAnswer) {
     }
 
     renderQuestion();
-    startTimer();
-  }, 900);
+  }, 1000);
 }
 
-
-
+// ===== TIMEOUT =====
 function handleTimeout() {
   gameState.locked = true;
+  gameState.totalAnswered++;
+  gameState.overallTotalAnswered++;
 
   const q = gameState.levelQuestions[gameState.questionIndex];
   const correct = q ? q.correct : '';
+  const allAnswers = q ? q.answers : [];
 
+  // Reveal correct answer
+  const buttons = ui.answerButtonsEl.querySelectorAll('.answer-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) {
+      btn.classList.add('correct-reveal');
+    }
+  });
 
-  setFeedback(`Waktu habis ⏲️. Jawaban yang benar: ${correct}`, 'wrong');
+  setFeedback(`Waktu habis ⏲️. Jawaban: ${correct}`, 'wrong');
 
   setTimeout(() => {
     gameState.locked = false;
-    gameState.questionIndex += 1;
-
+    gameState.questionIndex++;
 
     if (gameState.questionIndex >= gameState.levelQuestions.length) {
       const completedLevelIndex = gameState.levelIndex;
-      gameState.levelIndex += 1;
+      gameState.levelIndex++;
       gameState.questionIndex = 0;
 
       stopTimer();
@@ -198,21 +350,36 @@ function handleTimeout() {
     }
 
     renderQuestion();
-    startTimer();
-  }, 950);
+  }, 1200);
 }
 
+// ===== LEVEL COMPLETE =====
 function showLevelComplete(completedLevelIndex) {
   ui.quizBox.classList.add('hide');
   ui.levelCompleteBox.classList.remove('hide');
 
   const completedLevel = LEVELS[completedLevelIndex];
   ui.levelCompleteTitle.textContent = `Level ${completedLevel.label} Selesai!`;
-  ui.levelCompleteSubtitle.textContent = `Skor sementara: ${gameState.score}`;
+  ui.levelCompleteSubtitle.textContent = `Skor: ${gameState.score}`;
 
-  // Jika ini level terakhir (Sulit), sembunyikan tombol "Selanjutnya"
+  // Stats per level
+  ui.levelCompleteScores.innerHTML = `
+    <span>Benar: ${gameState.correctCount}/${gameState.totalAnswered}</span>
+    <span>Skor level: +${gameState.correctCount * completedLevel.points}</span>
+  `;
+
+  // Reset per-level counters for next level init
+  gameState.correctCount = 0;
+  gameState.totalAnswered = 0;
+
   const isLastLevel = (completedLevelIndex >= LEVELS.length - 1);
   ui.nextLevelBtn.classList.toggle('hide', isLastLevel);
+
+  if (isLastLevel) {
+    ui.playAgainBtn.textContent = 'Lihat Hasil';
+  } else {
+    ui.playAgainBtn.textContent = 'Selesai';
+  }
 }
 
 function hideLevelComplete() {
@@ -220,53 +387,149 @@ function hideLevelComplete() {
   ui.quizBox.classList.remove('hide');
 }
 
+// ===== END GAME =====
 function endGame() {
   stopTimer();
   ui.quizBox.classList.add('hide');
+  ui.levelCompleteBox.classList.add('hide');
   ui.scoreBox.classList.remove('hide');
-  ui.finalScoreEl.textContent = `Skor kamu: ${gameState.score}`;
+
+  // Final display
+  ui.finalScoreEl.textContent = gameState.score;
+  ui.finalLevel.textContent = LEVELS[gameState.levelIndex]?.label || 'Selesai';
+  ui.finalCorrect.textContent = gameState.overallCorrectCount;
+  ui.finalTotal.textContent = gameState.overallTotalAnswered;
+
+  // Grade & Stars
+  const maxScore = LEVELS.length * QUESTIONS_PER_LEVEL * LEVELS[LEVELS.length - 1].points;
+  const ratio = gameState.score / maxScore;
+
+  let grade, stars, emoji;
+  if (ratio >= 0.9) {
+    grade = 'S+'; stars = '⭐⭐⭐'; emoji = '🏆';
+  } else if (ratio >= 0.75) {
+    grade = 'A'; stars = '⭐⭐⭐'; emoji = '🥇';
+  } else if (ratio >= 0.6) {
+    grade = 'B'; stars = '⭐⭐'; emoji = '🥈';
+  } else if (ratio >= 0.4) {
+    grade = 'C'; stars = '⭐'; emoji = '🥉';
+  } else {
+    grade = 'D'; stars = '☆'; emoji = '💪';
+  }
+
+  ui.scoreGrade.textContent = grade;
+  ui.scoreStars.textContent = stars;
+  ui.scoreEmoji.textContent = emoji;
+
+  // Leaderboard
+  const isHighScore = isNewHighScore(gameState.score);
+  gameState.isNewHighScore = false;
+
+  if (gameState.score > 0) {
+    const entry = {
+      score: gameState.score,
+      level: LEVELS[Math.min(gameState.levelIndex, LEVELS.length - 1)]?.label || '-',
+      date: new Date().toLocaleDateString('id-ID'),
+    };
+    saveLeaderboard(entry);
+
+    if (isHighScore) {
+      gameState.isNewHighScore = true;
+      showAchievement();
+    }
+  }
+
+  renderLeaderboard(gameState.score);
 }
 
+// ===== ACHIEVEMENT =====
+function showAchievement() {
+  ui.achievementScore.textContent = gameState.score;
+  ui.achievementOverlay.classList.remove('hide');
+  spawnConfetti();
+}
+
+function hideAchievement() {
+  ui.achievementOverlay.classList.add('hide');
+  ui.confettiContainer.innerHTML = '';
+}
+
+function spawnConfetti() {
+  const container = ui.confettiContainer;
+  container.innerHTML = '';
+  const colors = ['#667eea', '#764ba2', '#e74c3c', '#2ecc71', '#f39c12', '#3498db', '#e91e63'];
+
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = `${Math.random() * 100}%`;
+    piece.style.top = `${Math.random() * 20 - 20}%`;
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.width = `${Math.random() * 8 + 4}px`;
+    piece.style.height = `${Math.random() * 8 + 4}px`;
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    piece.style.animationDuration = `${Math.random() * 2 + 1.5}s`;
+    piece.style.animationDelay = `${Math.random() * 0.8}s`;
+
+    // Random rotation direction
+    const dir = Math.random() > 0.5 ? 1 : -1;
+    piece.style.setProperty('--dir', dir);
+
+    container.appendChild(piece);
+  }
+}
+
+// ===== START GAME =====
 function startGame() {
   gameState.levelIndex = 0;
   gameState.questionIndex = 0;
   gameState.score = 0;
+  gameState.correctCount = 0;
+  gameState.totalAnswered = 0;
+  gameState.overallCorrectCount = 0;
+  gameState.overallTotalAnswered = 0;
   gameState.locked = false;
+  gameState.isNewHighScore = false;
 
   ui.scoreBox.classList.add('hide');
   ui.quizBox.classList.remove('hide');
+  ui.levelCompleteBox.classList.add('hide');
+  hideAchievement();
+
+  // Reset timer visual
+  ui.timerProgress.style.stroke = '#667eea';
+  ui.timerText.classList.remove('warning');
 
   initLevelQuestions();
   renderLevelAndMeta();
   renderQuestion();
-  startTimer();
 }
 
-
+// ===== EVENT LISTENERS =====
 ui.restartBtn?.addEventListener('click', startGame);
 
 ui.playAgainBtn?.addEventListener('click', () => {
-  // Selesai: akhiri game dan tampilkan skor akhir
   hideLevelComplete();
   endGame();
 });
 
-
-
-
 ui.nextLevelBtn?.addEventListener('click', () => {
-  // lanjut dari level sedang (karena levelIndex sudah di-increment saat selesai mudah)
   hideLevelComplete();
   initLevelQuestions();
   renderLevelAndMeta();
-
   renderQuestion();
-  startTimer();
 });
 
+ui.achievementCloseBtn?.addEventListener('click', hideAchievement);
 
+ui.clearLeaderboardBtn?.addEventListener('click', () => {
+  if (confirm('Hapus semua riwayat skor?')) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderLeaderboard();
+  }
+});
 
-
-
+// ===== INIT =====
+renderLeaderboard();
 startGame();
 

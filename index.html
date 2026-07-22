@@ -3,37 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Trivia Juve</title>
+    <title>Trivia Master</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Achievement Overlay -->
+    <div id="achievement-overlay" class="achievement-overlay hide">
+        <div class="achievement-modal">
+            <div class="achievement-icon">🏆</div>
+            <h2 class="achievement-title">Pencapaian Baru!</h2>
+            <p class="achievement-subtitle">Skor Tertinggi Baru!</p>
+            <p class="achievement-score" id="achievement-score">0</p>
+            <div class="confetti-container" id="confetti-container"></div>
+            <button id="achievement-close-btn" class="btn btn-primary" type="button">Luar Biasa! 🎉</button>
+        </div>
+    </div>
+
     <div class="game-container">
-        <h1>Kuis Trivia</h1>
+        <!-- Header -->
+        <div class="game-header">
+            <div class="logo-area">
+                <span class="logo-icon">🧠</span>
+                <h1 class="game-title">Trivia Master</h1>
+            </div>
+        </div>
+
+        <!-- Meta Bar -->
         <div id="meta-bar">
             <div id="level-badge" class="badge">Level: -</div>
             <div class="meta-right">
-                <div id="score-display" class="meta-item">Skor: 0</div>
-                <div id="timer-display" class="meta-item">⏱️ 15s</div>
+                <div id="score-display" class="meta-item meta-score">
+                    <span class="meta-icon">⭐</span>
+                    <span id="score-value">0</span>
+                </div>
+                <div id="timer-display" class="meta-item meta-timer">
+                    <div class="timer-ring">
+                        <svg viewBox="0 0 36 36">
+                            <path class="timer-bg" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="timer-progress" id="timer-progress" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        </svg>
+                        <span class="timer-text" id="timer-text">15</span>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Progress Bar Soal -->
+        <div id="progress-container">
+            <div class="progress-info">
+                <span id="progress-label">Soal 0/10</span>
+                <span id="progress-level-name">Mudah</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Quiz Box -->
         <div id="quiz-box">
+            <div class="question-number" id="question-number">Soal #1</div>
             <h2 id="question">Pertanyaan akan muncul di sini</h2>
-            <p id="hint" class="hint">Jawablah dengan memilih terjemahan yang benar.</p>
+            <p id="hint" class="hint">Pilih jawaban yang benar di bawah ini.</p>
             <div id="answer-buttons" class="btn-grid"></div>
             <div id="feedback" class="feedback hide" aria-live="polite"></div>
         </div>
+
+        <!-- Score Box (Game Over) -->
         <div id="score-box" class="hide">
-            <h2>Game Selesai!</h2>
-            <p id="final-score">Skor kamu: 0</p>
-            <button id="restart-btn" type="button">Main Lagi</button>
+            <div class="score-box-inner">
+                <div class="score-emoji" id="score-emoji">🎉</div>
+                <h2 class="score-title">Game Selesai!</h2>
+                <div class="final-score-display">
+                    <span class="final-score-label">Skor Akhir</span>
+                    <span class="final-score-value" id="final-score">0</span>
+                </div>
+                <div class="score-grade" id="score-grade">A</div>
+                <div class="score-stars" id="score-stars">⭐⭐⭐</div>
+                <div class="score-detail">
+                    <span>Level: <strong id="final-level">-</strong></span>
+                    <span>Benar: <strong id="final-correct">0</strong>/<span id="final-total">0</span></span>
+                </div>
+                <button id="restart-btn" class="btn btn-primary btn-lg" type="button">🔁 Main Lagi</button>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard-section">
+                <div class="leaderboard-header">
+                    <span class="leaderboard-icon">🏅</span>
+                    <h3 class="leaderboard-title">Papan Peringkat</h3>
+                </div>
+                <div class="leaderboard-body" id="leaderboard-body">
+                    <div class="leaderboard-empty">Belum ada skor. Jadilah yang pertama!</div>
+                </div>
+                <button id="clear-leaderboard-btn" class="btn btn-ghost btn-sm" type="button">Hapus Riwayat</button>
+            </div>
         </div>
 
+        <!-- Level Complete Box -->
         <div id="level-complete-box" class="hide">
-            <h2 id="level-complete-title">Level Selesai!</h2>
-            <p id="level-complete-subtitle"></p>
-            <div class="btn-grid">
-                <button id="play-again-btn" type="button">Selesai</button>
-                <button id="next-level-btn" type="button">Selanjutnya</button>
+            <div class="level-complete-inner">
+                <div class="level-complete-icon">🎊</div>
+                <h2 id="level-complete-title" class="level-complete-title">Level Selesai!</h2>
+                <p id="level-complete-subtitle" class="level-complete-subtitle"></p>
+                <div class="level-complete-scores" id="level-complete-scores"></div>
+                <div class="btn-group">
+                    <button id="play-again-btn" class="btn btn-secondary" type="button">Selesai</button>
+                    <button id="next-level-btn" class="btn btn-primary" type="button">Selanjutnya →</button>
+                </div>
             </div>
         </div>
 
@@ -42,3 +126,4 @@
     <script type="module" src="src/app.js"></script>
 </body>
 </html>
+
