@@ -1,4 +1,106 @@
 export const triviaQuestions = {
+  pemula: [
+    {
+      question: "Apa warna langit?",
+      answers: ["Merah", "Biru", "Hijau", "Kuning"],
+      correct: "Biru"
+    },
+    {
+      question: "Berapa jumlah kaki kucing?",
+      answers: ["2", "4", "6", "8"],
+      correct: "4"
+    },
+    {
+      question: "Apa nama hewan yang berkokok?",
+      answers: ["Bebek", "Kucing", "Ayam", "Sapi"],
+      correct: "Ayam"
+    },
+    {
+      question: "Apa bentuk bumi?",
+      answers: ["Kotak", "Segitiga", "Bulat", "Persegi"],
+      correct: "Bulat"
+    },
+    {
+      question: "Siapa presiden pertama Indonesia?",
+      answers: ["Soeharto", "Soekarno", "Habibie", "Megawati"],
+      correct: "Soekarno"
+    },
+    {
+      question: "Apa nama ibu kota Indonesia?",
+      answers: ["Bandung", "Surabaya", "Jakarta", "Medan"],
+      correct: "Jakarta"
+    },
+    {
+      question: "Berapa hari dalam seminggu?",
+      answers: ["5", "6", "7", "8"],
+      correct: "7"
+    },
+    {
+      question: "Apa nama alat untuk menulis?",
+      answers: ["Gunting", "Pensil", "Sendok", "Piring"],
+      correct: "Pensil"
+    },
+    {
+      question: "Apa kendaraan yang memiliki roda dua?",
+      answers: ["Mobil", "Bus", "Sepeda motor", "Kereta"],
+      correct: "Sepeda motor"
+    },
+    {
+      question: "Apa nama buah yang berwarna merah?",
+      answers: ["Pisang", "Anggur", "Apel", "Jeruk"],
+      correct: "Apel"
+    },
+    {
+      question: "Siapa nama pahlawan dari Surabaya?",
+      answers: ["Diponegoro", "Bung Tomo", "Kartini", "Sudirman"],
+      correct: "Bung Tomo"
+    },
+    {
+      question: "Apa nama bulan pertama dalam setahun?",
+      answers: ["Februari", "Maret", "Januari", "April"],
+      correct: "Januari"
+    },
+    {
+      question: "Apa nama ibukota Jawa Barat?",
+      answers: ["Jakarta", "Bandung", "Semarang", "Surabaya"],
+      correct: "Bandung"
+    },
+    {
+      question: "Berapa sisi segitiga?",
+      answers: ["2", "3", "4", "5"],
+      correct: "3"
+    },
+    {
+      question: "Apa nama makanan pokok orang Indonesia?",
+      answers: ["Roti", "Nasi", "Mie", "Kentang"],
+      correct: "Nasi"
+    },
+    {
+      question: "Apa nama mata uang Indonesia?",
+      answers: ["Ringgit", "Baht", "Rupiah", "Dollar"],
+      correct: "Rupiah"
+    },
+    {
+      question: "Apa nama alat untuk melihat bintang?",
+      answers: ["Mikroskop", "Teleskop", "Kacamata", "Teropong"],
+      correct: "Teleskop"
+    },
+    {
+      question: "Apa nama gas yang kita hirup?",
+      answers: ["Oksigen", "Hidrogen", "Nitrogen", "Karbon"],
+      correct: "Oksigen"
+    },
+    {
+      question: "Berapa jumlah jari tangan manusia?",
+      answers: ["5", "10", "15", "20"],
+      correct: "10"
+    },
+    {
+      question: "Apa nama alat penerangan saat listrik mati?",
+      answers: ["Kipas", "Lilin", "Kompor", "Radio"],
+      correct: "Lilin"
+    }
+  ],
   mudah: [
     {
       question: "What is the capital of Indonesia?",
@@ -304,7 +406,107 @@ export const triviaQuestions = {
       answers: ["Saya berharap kamu tidak merokok di sini.", "Saya ingin kamu merokok di sini.", "Saya berharap kamu tidur.", "Saya berharap kamu pergi."],
       correct: "Saya berharap kamu tidak merokok di sini."
     }
+  ],
+  ekstrim: [
+    {
+      question: "Not until the meeting was over did I realize my mistake.",
+      answers: ["Sampai rapat selesai aku baru sadar kesalahanku.", "Aku sadar sebelum rapat.", "Rapat selesai karena kesalahan.", "Aku tidak pernah sadar."],
+      correct: "Sampai rapat selesai aku baru sadar kesalahanku."
+    },
+    {
+      question: "Were it not for your help, I would have failed.",
+      answers: ["Tanpa bantuanmu, aku pasti gagal.", "Karena bantuanmu aku gagal.", "Aku gagal meski dibantu.", "Bantuanmu tidak berguna."],
+      correct: "Tanpa bantuanmu, aku pasti gagal."
+    },
+    {
+      question: "The more you practice, the better you become.",
+      answers: ["Semakin banyak berlatih, semakin baik hasilmu.", "Semakin banyak tidur, semakin sehat.", "Berlatih membuat lelah.", "Jangan pernah berlatih."],
+      correct: "Semakin banyak berlatih, semakin baik hasilmu."
+    },
+    {
+      question: "Having finished his work, he went home.",
+      answers: ["Setelah menyelesaikan pekerjaannya, dia pulang.", "Dia pulang sebelum bekerja.", "Pekerjaan selesai sendiri.", "Dia tidak pernah bekerja."],
+      correct: "Setelah menyelesaikan pekerjaannya, dia pulang."
+    },
+    {
+      question: "Not only did she win, but she also broke the record.",
+      answers: ["Dia tidak hanya menang, tapi juga memecahkan rekor.", "Dia kalah dan rekor pecah.", "Dia menang tanpa rekor.", "Dia tidak ikut lomba."],
+      correct: "Dia tidak hanya menang, tapi juga memecahkan rekor."
+    },
+    {
+      question: "It is imperative that we leave now.",
+      answers: ["Sangat penting kita berangkat sekarang.", "Kita boleh pergi kapan saja.", "Tidak perlu terburu-buru.", "Berangkat besok saja."],
+      correct: "Sangat penting kita berangkat sekarang."
+    },
+    {
+      question: "He is known for being a jack of all trades.",
+      answers: ["Dia dikenal bisa melakukan banyak hal.", "Dia hanya bisa satu hal.", "Dia tidak bisa apa-apa.", "Dia ahli dalam satu bidang."],
+      correct: "Dia dikenal bisa melakukan banyak hal."
+    },
+    {
+      question: "They would rather starve than beg.",
+      answers: ["Mereka lebih baik kelaparan daripada mengemis.", "Mereka suka meminta-minta.", "Mereka tidak pernah lapar.", "Mereka kaya raya."],
+      correct: "Mereka lebih baik kelaparan daripada mengemis."
+    },
+    {
+      question: "The weather being bad, we canceled the trip.",
+      answers: ["Karena cuaca buruk, kami batalkan perjalanan.", "Cuaca cerah, kami pergi.", "Perjalanan tetap jalan meski hujan.", "Kami tidak punya rencana."],
+      correct: "Karena cuaca buruk, kami batalkan perjalanan."
+    },
+    {
+      question: "He speaks as if he knew everything.",
+      answers: ["Dia berbicara seolah tahu segalanya.", "Dia memang tahu segalanya.", "Dia diam saja.", "Dia tidak tahu apa-apa."],
+      correct: "Dia berbicara seolah tahu segalanya."
+    },
+    {
+      question: "No sooner had we left than it started raining.",
+      answers: ["Baru saja kami pergi, hujan mulai turun.", "Kami pergi setelah hujan reda.", "Hujan turun sebelum kami pergi.", "Kami tidak jadi pergi."],
+      correct: "Baru saja kami pergi, hujan mulai turun."
+    },
+    {
+      question: "It goes without saying that honesty is important.",
+      answers: ["Tidak perlu dikatakan bahwa kejujuran itu penting.", "Kejujuran tidak penting.", "Semua orang boleh berbohong.", "Kejujuran hanya untuk anak-anak."],
+      correct: "Tidak perlu dikatakan bahwa kejujuran itu penting."
+    },
+    {
+      question: "She devoted herself entirely to her career.",
+      answers: ["Dia mengabdikan dirinya sepenuhnya pada karir.", "Dia benci pekerjaannya.", "Dia malas bekerja.", "Karirnya hancur."],
+      correct: "Dia mengabdikan dirinya sepenuhnya pada karir."
+    },
+    {
+      question: "The problem is far from being solved.",
+      answers: ["Masalahnya masih jauh dari selesai.", "Masalah sudah selesai.", "Tidak ada masalah.", "Masalahnya mudah."],
+      correct: "Masalahnya masih jauh dari selesai."
+    },
+    {
+      question: "On no account should you open this door.",
+      answers: ["Dalam kondisi apapun jangan buka pintu ini.", "Buka pintu kapan saja.", "Pintu ini selalu terbuka.", "Tidak masalah buka pintu."],
+      correct: "Dalam kondisi apapun jangan buka pintu ini."
+    },
+    {
+      question: "Little did they know that danger was near.",
+      answers: ["Mereka tidak tahu bahwa bahaya sudah dekat.", "Mereka tahu ada bahaya.", "Bahaya tidak ada.", "Mereka siap menghadapi bahaya."],
+      correct: "Mereka tidak tahu bahwa bahaya sudah dekat."
+    },
+    {
+      question: "Contrary to popular belief, the earth is round.",
+      answers: ["Bertentangan dengan kepercayaan umum, bumi itu bulat.", "Semua orang tahu bumi bulat.", "Bumi itu datar.", "Bumi itu kotak."],
+      correct: "Bertentangan dengan kepercayaan umum, bumi itu bulat."
+    },
+    {
+      question: "He was charged with having stolen the money.",
+      answers: ["Dia dituduh telah mencuri uang itu.", "Dia dipuji karena mencuri.", "Uang itu miliknya.", "Dia tidak bersalah."],
+      correct: "Dia dituduh telah mencuri uang itu."
+    },
+    {
+      question: "Such was his anger that he could not speak.",
+      answers: ["Begitu marahnya dia sampai tidak bisa bicara.", "Dia bicara dengan marah.", "Dia tidak marah.", "Dia tertawa terbahak-bahak."],
+      correct: "Begitu marahnya dia sampai tidak bisa bicara."
+    },
+    {
+      question: "All things considered, this is the best option.",
+      answers: ["Semua hal dipertimbangkan, ini pilihan terbaik.", "Ini pilihan terburuk.", "Tidak ada pilihan lain.", "Semua pilihan sama saja."],
+      correct: "Semua hal dipertimbangkan, ini pilihan terbaik."
+    }
   ]
 };
-
-

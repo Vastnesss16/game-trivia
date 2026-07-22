@@ -46,14 +46,16 @@ const ui = {
 
 // ===== CONSTANTS =====
 const LEVELS = [
+  { key: 'pemula', label: 'Pemula', points: 5 },
   { key: 'mudah', label: 'Mudah', points: 10 },
   { key: 'sedang', label: 'Sedang', points: 15 },
-  { key: 'sulit', label: 'Sulit', points: 20 }
+  { key: 'sulit', label: 'Sulit', points: 20 },
+  { key: 'ekstrim', label: 'Ekstrim', points: 25 }
 ];
 
 const QUESTIONS_PER_LEVEL = 10;
 const TIMER_SECONDS = 15;
-const CIRCUMFERENCE = 2 * Math.PI * 15.9155; // ~100
+const CIRCUMFERENCE = 2 * Math.PI * 15.9155;
 
 const STORAGE_KEY = 'trivia_leaderboard';
 const MAX_LEADERBOARD = 10;
@@ -94,9 +96,7 @@ function saveLeaderboard(entry) {
 
 function isNewHighScore(score) {
   const board = getLeaderboard();
-  // Jika belum ada skor, skor berapapun jadi high score
   if (board.length === 0) return true;
-  // Jika skor melebihi skor tertinggi (#1)
   return score > board[0].score;
 }
 
@@ -116,16 +116,14 @@ function renderLeaderboard(currentScore = null) {
     const item = document.createElement('div');
     item.className = `leaderboard-item${isCurrent ? ' current-player' : ''}`;
 
-    const rankClass = i === 0 ? 'top-1' : i === 1 ? 'top-2' : i === 2 ? 'top-3' : '';
-    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `#${i + 1}`;
+    const medal = i === 0 ? '1' : i === 1 ? '2' : i === 2 ? '3' : `#${i + 1}`;
 
     item.innerHTML = `
-      <div class="leaderboard-rank ${rankClass}">${medal}</div>
+      <div class="leaderboard-rank top-${i + 1}">${medal}</div>
       <div class="leaderboard-score">${entry.score}</div>
       <div class="leaderboard-info">
         <div class="leaderboard-level">Level ${entry.level}</div>
         <div class="leaderboard-date">${entry.date}</div>
-      </div>
       ${isCurrent ? '<span class="leaderboard-badge-new">Baru</span>' : ''}
     `;
 
@@ -185,7 +183,6 @@ function updateTimerDisplay() {
   ui.timerProgress.style.strokeDasharray = `${CIRCUMFERENCE - offset} ${CIRCUMFERENCE}`;
   ui.timerText.textContent = gameState.timeLeft;
 
-  // Warning color
   if (gameState.timeLeft <= 5) {
     ui.timerProgress.style.stroke = '#e74c3c';
     ui.timerText.classList.add('warning');
@@ -218,10 +215,9 @@ function renderLevelAndMeta() {
 
 function updateProgressBar() {
   const total = gameState.levelQuestions.length;
-  const current = gameState.questionIndex + 1;
   const pct = Math.min((gameState.questionIndex) / total * 100, 100);
   ui.progressFill.style.width = `${pct}%`;
-  ui.progressLabel.textContent = `Soal ${Math.min(current, total)}/${total}`;
+  ui.progressLabel.textContent = `Soal ${Math.min(gameState.questionIndex + 1, total)}/${total}`;
 }
 
 function renderQuestion() {
@@ -269,7 +265,6 @@ function selectAnswer(isCorrect, correctAnswer, allAnswers, selectedBtn) {
 
   const level = LEVELS[gameState.levelIndex];
 
-  // Disable all buttons & reveal correct/wrong
   const buttons = ui.answerButtonsEl.querySelectorAll('.answer-btn');
   buttons.forEach(btn => {
     btn.disabled = true;
@@ -285,14 +280,13 @@ function selectAnswer(isCorrect, correctAnswer, allAnswers, selectedBtn) {
     gameState.correctCount++;
     gameState.overallCorrectCount++;
     ui.scoreDisplay.textContent = gameState.score;
-    setFeedback('Benar! ✅', 'correct');
+    setFeedback('Benar', 'correct');
   } else {
-    setFeedback(`Salah ❌. Jawaban: ${correctAnswer}`, 'wrong');
+    setFeedback(`Salah. Jawaban: ${correctAnswer}`, 'wrong');
   }
 
   gameState.overallTotalAnswered++;
 
-  // Next question after delay
   setTimeout(() => {
     gameState.locked = false;
 
@@ -321,9 +315,7 @@ function handleTimeout() {
 
   const q = gameState.levelQuestions[gameState.questionIndex];
   const correct = q ? q.correct : '';
-  const allAnswers = q ? q.answers : [];
 
-  // Reveal correct answer
   const buttons = ui.answerButtonsEl.querySelectorAll('.answer-btn');
   buttons.forEach(btn => {
     btn.disabled = true;
@@ -332,7 +324,7 @@ function handleTimeout() {
     }
   });
 
-  setFeedback(`Waktu habis ⏲️. Jawaban: ${correct}`, 'wrong');
+  setFeedback(`Waktu habis. Jawaban: ${correct}`, 'wrong');
 
   setTimeout(() => {
     gameState.locked = false;
@@ -359,16 +351,14 @@ function showLevelComplete(completedLevelIndex) {
   ui.levelCompleteBox.classList.remove('hide');
 
   const completedLevel = LEVELS[completedLevelIndex];
-  ui.levelCompleteTitle.textContent = `Level ${completedLevel.label} Selesai!`;
+  ui.levelCompleteTitle.textContent = `Level ${completedLevel.label} Selesai`;
   ui.levelCompleteSubtitle.textContent = `Skor: ${gameState.score}`;
 
-  // Stats per level
   ui.levelCompleteScores.innerHTML = `
     <span>Benar: ${gameState.correctCount}/${gameState.totalAnswered}</span>
     <span>Skor level: +${gameState.correctCount * completedLevel.points}</span>
   `;
 
-  // Reset per-level counters for next level init
   gameState.correctCount = 0;
   gameState.totalAnswered = 0;
 
@@ -394,34 +384,31 @@ function endGame() {
   ui.levelCompleteBox.classList.add('hide');
   ui.scoreBox.classList.remove('hide');
 
-  // Final display
   ui.finalScoreEl.textContent = gameState.score;
   ui.finalLevel.textContent = LEVELS[gameState.levelIndex]?.label || 'Selesai';
   ui.finalCorrect.textContent = gameState.overallCorrectCount;
   ui.finalTotal.textContent = gameState.overallTotalAnswered;
 
-  // Grade & Stars
   const maxScore = LEVELS.length * QUESTIONS_PER_LEVEL * LEVELS[LEVELS.length - 1].points;
   const ratio = gameState.score / maxScore;
 
   let grade, stars, emoji;
   if (ratio >= 0.9) {
-    grade = 'S+'; stars = '⭐⭐⭐'; emoji = '🏆';
+    grade = 'S+'; stars = 'Bintang 3'; emoji = 'Trophy';
   } else if (ratio >= 0.75) {
-    grade = 'A'; stars = '⭐⭐⭐'; emoji = '🥇';
+    grade = 'A'; stars = 'Bintang 3'; emoji = 'Emas';
   } else if (ratio >= 0.6) {
-    grade = 'B'; stars = '⭐⭐'; emoji = '🥈';
+    grade = 'B'; stars = 'Bintang 2'; emoji = 'Perak';
   } else if (ratio >= 0.4) {
-    grade = 'C'; stars = '⭐'; emoji = '🥉';
+    grade = 'C'; stars = 'Bintang 1'; emoji = 'Perunggu';
   } else {
-    grade = 'D'; stars = '☆'; emoji = '💪';
+    grade = 'D'; stars = 'Tidak Ada'; emoji = 'Semangat';
   }
 
   ui.scoreGrade.textContent = grade;
   ui.scoreStars.textContent = stars;
   ui.scoreEmoji.textContent = emoji;
 
-  // Leaderboard
   const isHighScore = isNewHighScore(gameState.score);
   gameState.isNewHighScore = false;
 
@@ -470,11 +457,6 @@ function spawnConfetti() {
     piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
     piece.style.animationDuration = `${Math.random() * 2 + 1.5}s`;
     piece.style.animationDelay = `${Math.random() * 0.8}s`;
-
-    // Random rotation direction
-    const dir = Math.random() > 0.5 ? 1 : -1;
-    piece.style.setProperty('--dir', dir);
-
     container.appendChild(piece);
   }
 }
@@ -496,7 +478,6 @@ function startGame() {
   ui.levelCompleteBox.classList.add('hide');
   hideAchievement();
 
-  // Reset timer visual
   ui.timerProgress.style.stroke = '#667eea';
   ui.timerText.classList.remove('warning');
 
@@ -532,4 +513,3 @@ ui.clearLeaderboardBtn?.addEventListener('click', () => {
 // ===== INIT =====
 renderLeaderboard();
 startGame();
-
