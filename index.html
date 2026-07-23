@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="id">
+    <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,11 @@
     <div id="achievement-overlay" class="achievement-overlay hide">
         <div class="achievement-modal">
             <div class="achievement-icon">🏆</div>
-            <h2 class="achievement-title">Pencapaian Baru!</h2>
-            <p class="achievement-subtitle">Skor Tertinggi Baru!</p>
+            <h2 class="achievement-title">New Achievement!</h2>
+            <p class="achievement-subtitle">New High Score!</p>
             <p class="achievement-score" id="achievement-score">0</p>
             <div class="confetti-container" id="confetti-container"></div>
-            <button id="achievement-close-btn" class="btn btn-primary" type="button">Luar Biasa! 🎉</button>
+            <button id="achievement-close-btn" class="btn btn-primary" type="button">Awesome! 🎉</button>
         </div>
     </div>
 
@@ -56,11 +57,11 @@
             </div>
         </div>
 
-        <!-- Progress Bar Soal -->
+        <!-- Progress Bar -->
         <div id="progress-container">
             <div class="progress-info">
-                <span id="progress-label">Soal 0/10</span>
-                <span id="progress-level-name">Mudah</span>
+                <span id="progress-label">Question 0/10</span>
+                <span id="progress-level-name">Beginner</span>
             </div>
             <div class="progress-track">
                 <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
@@ -69,9 +70,9 @@
 
         <!-- Quiz Box -->
         <div id="quiz-box">
-            <div class="question-number" id="question-number">Soal #1</div>
-            <h2 id="question">Pertanyaan akan muncul di sini</h2>
-            <p id="hint" class="hint">Pilih jawaban yang benar di bawah ini.</p>
+            <div class="question-number" id="question-number">Question #1</div>
+            <h2 id="question">Question will appear here</h2>
+            <p id="hint" class="hint">Choose the correct answer below.</p>
             <div id="answer-buttons" class="btn-grid"></div>
             <div id="feedback" class="feedback hide" aria-live="polite"></div>
         </div>
@@ -80,30 +81,30 @@
         <div id="score-box" class="hide">
             <div class="score-box-inner">
                 <div class="score-emoji" id="score-emoji">🎉</div>
-                <h2 class="score-title">Game Selesai!</h2>
+                <h2 class="score-title">Game Over!</h2>
                 <div class="final-score-display">
-                    <span class="final-score-label">Skor Akhir</span>
+                    <span class="final-score-label">Final Score</span>
                     <span class="final-score-value" id="final-score">0</span>
                 </div>
                 <div class="score-grade" id="score-grade">A</div>
                 <div class="score-stars" id="score-stars">⭐⭐⭐</div>
                 <div class="score-detail">
                     <span>Level: <strong id="final-level">-</strong></span>
-                    <span>Benar: <strong id="final-correct">0</strong>/<span id="final-total">0</span></span>
+                    <span>Correct: <strong id="final-correct">0</strong>/<span id="final-total">0</span></span>
                 </div>
-                <button id="restart-btn" class="btn btn-primary btn-lg" type="button">🔁 Main Lagi</button>
+                <button id="restart-btn" class="btn btn-primary btn-lg" type="button">🔁 Play Again</button>
             </div>
 
             <!-- Leaderboard -->
             <div class="leaderboard-section">
                 <div class="leaderboard-header">
                     <span class="leaderboard-icon">🏅</span>
-                    <h3 class="leaderboard-title">Papan Peringkat</h3>
+                    <h3 class="leaderboard-title">Leaderboard</h3>
                 </div>
                 <div class="leaderboard-body" id="leaderboard-body">
-                    <div class="leaderboard-empty">Belum ada skor. Jadilah yang pertama!</div>
+                    <div class="leaderboard-empty">No scores yet. Be the first!</div>
                 </div>
-                <button id="clear-leaderboard-btn" class="btn btn-ghost btn-sm" type="button">Hapus Riwayat</button>
+                <button id="clear-leaderboard-btn" class="btn btn-ghost btn-sm" type="button">Clear History</button>
             </div>
         </div>
 
@@ -111,12 +112,12 @@
         <div id="level-complete-box" class="hide">
             <div class="level-complete-inner">
                 <div class="level-complete-icon">🎊</div>
-                <h2 id="level-complete-title" class="level-complete-title">Level Selesai!</h2>
+                <h2 id="level-complete-title" class="level-complete-title">Level Complete!</h2>
                 <p id="level-complete-subtitle" class="level-complete-subtitle"></p>
                 <div class="level-complete-scores" id="level-complete-scores"></div>
                 <div class="btn-group">
-                    <button id="play-again-btn" class="btn btn-secondary" type="button">Selesai</button>
-                    <button id="next-level-btn" class="btn btn-primary" type="button">Selanjutnya →</button>
+                    <button id="play-again-btn" class="btn btn-secondary" type="button">Finish</button>
+                    <button id="next-level-btn" class="btn btn-primary" type="button">Next →</button>
                 </div>
             </div>
         </div>

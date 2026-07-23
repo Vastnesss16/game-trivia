@@ -1,512 +1,512 @@
 export const triviaQuestions = {
   pemula: [
     {
-      question: "Apa warna langit?",
-      answers: ["Merah", "Biru", "Hijau", "Kuning"],
-      correct: "Biru"
+      question: "What color is the sky?",
+      answers: ["Red", "Blue", "Green", "Yellow"],
+      correct: "Blue"
     },
     {
-      question: "Berapa jumlah kaki kucing?",
+      question: "How many legs does a cat have?",
       answers: ["2", "4", "6", "8"],
       correct: "4"
     },
     {
-      question: "Apa nama hewan yang berkokok?",
-      answers: ["Bebek", "Kucing", "Ayam", "Sapi"],
-      correct: "Ayam"
+      question: "Which animal says 'cock-a-doodle-doo'?",
+      answers: ["Duck", "Cat", "Rooster", "Cow"],
+      correct: "Rooster"
     },
     {
-      question: "Apa bentuk bumi?",
-      answers: ["Kotak", "Segitiga", "Bulat", "Persegi"],
-      correct: "Bulat"
+      question: "What shape is the Earth?",
+      answers: ["Square", "Triangle", "Round", "Rectangle"],
+      correct: "Round"
     },
     {
-      question: "Siapa presiden pertama Indonesia?",
-      answers: ["Soeharto", "Soekarno", "Habibie", "Megawati"],
-      correct: "Soekarno"
+      question: "What is the color of grass?",
+      answers: ["Blue", "Red", "Green", "Yellow"],
+      correct: "Green"
     },
     {
-      question: "Apa nama ibu kota Indonesia?",
-      answers: ["Bandung", "Surabaya", "Jakarta", "Medan"],
-      correct: "Jakarta"
-    },
-    {
-      question: "Berapa hari dalam seminggu?",
+      question: "How many days are in a week?",
       answers: ["5", "6", "7", "8"],
       correct: "7"
     },
     {
-      question: "Apa nama alat untuk menulis?",
-      answers: ["Gunting", "Pensil", "Sendok", "Piring"],
-      correct: "Pensil"
+      question: "What do you use to write?",
+      answers: ["Scissors", "Pencil", "Spoon", "Plate"],
+      correct: "Pencil"
     },
     {
-      question: "Apa kendaraan yang memiliki roda dua?",
-      answers: ["Mobil", "Bus", "Sepeda motor", "Kereta"],
-      correct: "Sepeda motor"
+      question: "Which vehicle has two wheels?",
+      answers: ["Car", "Bus", "Motorcycle", "Train"],
+      correct: "Motorcycle"
     },
     {
-      question: "Apa nama buah yang berwarna merah?",
-      answers: ["Pisang", "Anggur", "Apel", "Jeruk"],
-      correct: "Apel"
+      question: "What fruit is red?",
+      answers: ["Banana", "Grape", "Apple", "Orange"],
+      correct: "Apple"
     },
     {
-      question: "Siapa nama pahlawan dari Surabaya?",
-      answers: ["Diponegoro", "Bung Tomo", "Kartini", "Sudirman"],
-      correct: "Bung Tomo"
+      question: "What is the first month of the year?",
+      answers: ["February", "March", "January", "April"],
+      correct: "January"
     },
     {
-      question: "Apa nama bulan pertama dalam setahun?",
-      answers: ["Februari", "Maret", "Januari", "April"],
-      correct: "Januari"
-    },
-    {
-      question: "Apa nama ibukota Jawa Barat?",
-      answers: ["Jakarta", "Bandung", "Semarang", "Surabaya"],
-      correct: "Bandung"
-    },
-    {
-      question: "Berapa sisi segitiga?",
+      question: "How many sides does a triangle have?",
       answers: ["2", "3", "4", "5"],
       correct: "3"
     },
     {
-      question: "Apa nama makanan pokok orang Indonesia?",
-      answers: ["Roti", "Nasi", "Mie", "Kentang"],
-      correct: "Nasi"
+      question: "What do you use to see stars at night?",
+      answers: ["Microscope", "Telescope", "Glasses", "Binoculars"],
+      correct: "Telescope"
     },
     {
-      question: "Apa nama mata uang Indonesia?",
-      answers: ["Ringgit", "Baht", "Rupiah", "Dollar"],
-      correct: "Rupiah"
+      question: "What gas do we breathe?",
+      answers: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon"],
+      correct: "Oxygen"
     },
     {
-      question: "Apa nama alat untuk melihat bintang?",
-      answers: ["Mikroskop", "Teleskop", "Kacamata", "Teropong"],
-      correct: "Teleskop"
-    },
-    {
-      question: "Apa nama gas yang kita hirup?",
-      answers: ["Oksigen", "Hidrogen", "Nitrogen", "Karbon"],
-      correct: "Oksigen"
-    },
-    {
-      question: "Berapa jumlah jari tangan manusia?",
+      question: "How many fingers does a person have?",
       answers: ["5", "10", "15", "20"],
       correct: "10"
     },
     {
-      question: "Apa nama alat penerangan saat listrik mati?",
-      answers: ["Kipas", "Lilin", "Kompor", "Radio"],
-      correct: "Lilin"
+      question: "What do you use when the power goes out?",
+      answers: ["Fan", "Candle", "Stove", "Radio"],
+      correct: "Candle"
+    },
+    {
+      question: "What is the opposite of 'hot'?",
+      answers: ["Warm", "Cold", "Cool", "Freezing"],
+      correct: "Cold"
+    },
+    {
+      question: "Which animal lives in water?",
+      answers: ["Lion", "Elephant", "Fish", "Bird"],
+      correct: "Fish"
+    },
+    {
+      question: "What color do you get when you mix red and blue?",
+      answers: ["Green", "Purple", "Orange", "Yellow"],
+      correct: "Purple"
+    },
+    {
+      question: "What do you wear on your feet?",
+      answers: ["Hat", "Gloves", "Shoes", "Scarf"],
+      correct: "Shoes"
+    },
+    {
+      question: "How do you say 'thank you' in English?",
+      answers: ["Please", "Sorry", "Thank you", "Hello"],
+      correct: "Thank you"
     }
   ],
   mudah: [
     {
-      question: "What is the capital of Indonesia?",
-      answers: ["Jakarta", "Bandung", "Surabaya", "Yogyakarta"],
-      correct: "Jakarta"
+      question: "What is the opposite of 'big'?",
+      answers: ["Large", "Huge", "Small", "Tall"],
+      correct: "Small"
     },
     {
-      question: "How do you say 'Hello' in Indonesian?",
-      answers: ["Terima kasih", "Selamat tinggal", "Halo", "Maaf"],
-      correct: "Halo"
+      question: "She ___ a doctor.",
+      answers: ["am", "is", "are", "be"],
+      correct: "is"
     },
     {
-      question: "I am hungry.",
-      answers: ["Saya lelah.", "Saya lapar.", "Saya senang.", "Saya marah."],
-      correct: "Saya lapar."
+      question: "What do you say when you meet someone in the morning?",
+      answers: ["Good night", "Good morning", "Good bye", "Good evening"],
+      correct: "Good morning"
     },
     {
-      question: "What time is it?",
-      answers: ["Jam berapa?", "Di mana?", "Berapa harga?", "Siapa namamu?"],
-      correct: "Jam berapa?"
+      question: "I ___ coffee every morning.",
+      answers: ["drink", "drinks", "drinking", "drank"],
+      correct: "drink"
     },
     {
-      question: "Where is the bathroom?",
-      answers: ["Di mana kamar mandi?", "Di mana toko?", "Di mana halte?", "Di mana sekolah?"],
-      correct: "Di mana kamar mandi?"
+      question: "Which word means 'happy'?",
+      answers: ["Sad", "Angry", "Glad", "Tired"],
+      correct: "Glad"
     },
     {
-      question: "I want to eat.",
-      answers: ["Saya ingin makan.", "Saya ingin minum.", "Saya ingin tidur.", "Saya ingin pergi."],
-      correct: "Saya ingin makan."
+      question: "They ___ playing football now.",
+      answers: ["is", "am", "are", "be"],
+      correct: "are"
     },
     {
-      question: "I live in Jakarta.",
-      answers: ["Saya tinggal di Jakarta.", "Saya bekerja di Jakarta.", "Saya belajar di Jakarta.", "Saya pergi ke Jakarta."],
-      correct: "Saya tinggal di Jakarta."
+      question: "What is the plural of 'child'?",
+      answers: ["Childs", "Children", "Childes", "Child"],
+      correct: "Children"
     },
     {
-      question: "Thank you.",
-      answers: ["Tolong", "Permisi", "Terima kasih", "Maaf"],
-      correct: "Terima kasih"
+      question: "Where is the book? It is ___ the table.",
+      answers: ["in", "on", "at", "under"],
+      correct: "on"
     },
     {
-      question: "Good morning.",
-      answers: ["Selamat siang", "Selamat pagi", "Selamat sore", "Selamat malam"],
-      correct: "Selamat pagi"
+      question: "Which sentence is correct?",
+      answers: ["He don't like tea.", "He doesn't likes tea.", "He doesn't like tea.", "He not like tea."],
+      correct: "He doesn't like tea."
     },
     {
-      question: "Good night.",
-      answers: ["Selamat pagi", "Selamat sore", "Selamat malam", "Selamat siang"],
-      correct: "Selamat malam"
+      question: "What color is a banana?",
+      answers: ["Red", "Blue", "Yellow", "Green"],
+      correct: "Yellow"
     },
     {
-      question: "I don't understand.",
-      answers: ["Saya tidak mengerti.", "Saya mengerti.", "Saya tidak suka.", "Saya mengantuk."],
-      correct: "Saya tidak mengerti."
+      question: "I ___ to school yesterday.",
+      answers: ["go", "goes", "went", "going"],
+      correct: "went"
     },
     {
-      question: "Please write your name.",
-      answers: ["Tolong tulis nama kamu.", "Tolong baca keras.", "Tolong berhenti.", "Tolong dengar lagi."],
-      correct: "Tolong tulis nama kamu."
+      question: "What does 'cold' mean?",
+      answers: ["Hot", "Warm", "Not warm", "Spicy"],
+      correct: "Not warm"
     },
     {
-      question: "I like coffee.",
-      answers: ["Saya suka kopi.", "Saya benci kopi.", "Saya tidak suka kopi.", "Saya minum teh."],
-      correct: "Saya suka kopi."
+      question: "A: 'Thank you.'  B: '___'",
+      answers: ["Yes", "No", "You're welcome", "Ok"],
+      correct: "You're welcome"
     },
     {
-      question: "How much is this?",
-      answers: ["Berapa harga ini?", "Di mana ini?", "Kapan ini?", "Siapa ini?"],
-      correct: "Berapa harga ini?"
+      question: "Which is a day of the week?",
+      answers: ["January", "Monday", "Summer", "Noon"],
+      correct: "Monday"
     },
     {
-      question: "Where are you from?",
-      answers: ["Kamu dari mana?", "Kamu siapa?", "Kamu tinggal di mana?", "Kamu mau apa?"],
-      correct: "Kamu dari mana?"
+      question: "He is ___ than his brother.",
+      answers: ["tall", "taller", "tallest", "more tall"],
+      correct: "taller"
     },
     {
-      question: "I am thirsty.",
-      answers: ["Saya lapar.", "Saya haus.", "Saya marah.", "Saya sedih."],
-      correct: "Saya haus."
+      question: "What is this? ___ a pencil.",
+      answers: ["This is", "It is", "That is", "These are"],
+      correct: "It is"
     },
     {
-      question: "Let's go!",
-      answers: ["Mari pergi!", "Ayo makan!", "Ayo belajar!", "Mari pulang!"],
-      correct: "Mari pergi!"
+      question: "Can you ___ me, please?",
+      answers: ["helping", "helps", "help", "helped"],
+      correct: "help"
     },
     {
-      question: "I'm sorry.",
-      answers: ["Maaf", "Terima kasih", "Permisi", "Tolong"],
-      correct: "Maaf"
+      question: "I am ___ English lesson now.",
+      answers: ["learn", "learns", "learning", "learned"],
+      correct: "learning"
     },
     {
-      question: "Please help me.",
-      answers: ["Tolong bantu saya.", "Tolong marah.", "Tolong tidur.", "Tolong pergi."],
-      correct: "Tolong bantu saya."
+      question: "How many months are in a year?",
+      answers: ["10", "11", "12", "13"],
+      correct: "12"
     },
     {
-      question: "I want water.",
-      answers: ["Saya ingin air.", "Saya ingin nasi.", "Saya ingin roti.", "Saya ingin susu."],
-      correct: "Saya ingin air."
+      question: "Which word is a feeling?",
+      answers: ["Table", "Happy", "Garden", "Pencil"],
+      correct: "Happy"
     }
   ],
   sedang: [
     {
-      question: "I want to learn English.",
-      answers: ["Saya ingin belajar bahasa Inggris.", "Saya tidak suka bahasa Inggris.", "Saya ingin tidur.", "Saya ingin makan."],
-      correct: "Saya ingin belajar bahasa Inggris."
+      question: "If it rains tomorrow, I ___ stay at home.",
+      answers: ["will", "would", "am", "was"],
+      correct: "will"
     },
     {
-      question: "Where is the nearest bus stop?",
-      answers: ["Di mana halte bus terdekat?", "Di mana restoran terbaik?", "Kapan mulai?", "Mengapa pergi?"],
-      correct: "Di mana halte bus terdekat?"
+      question: "She has been working here ___ 2019.",
+      answers: ["for", "since", "from", "in"],
+      correct: "since"
     },
     {
-      question: "Please speak more slowly.",
-      answers: ["Tolong bicaralah lebih pelan.", "Tolong diam.", "Tolong cepat.", "Tolong ulangi."],
-      correct: "Tolong bicaralah lebih pelan."
+      question: "He said that he ___ to the party.",
+      answers: ["come", "came", "will come", "coming"],
+      correct: "came"
     },
     {
-      question: "What does this word mean?",
-      answers: ["Apa arti kata ini?", "Berapa jumlahnya?", "Siapa dia?", "Bagaimana caranya?"],
-      correct: "Apa arti kata ini?"
+      question: "This is the book ___ I bought yesterday.",
+      answers: ["who", "which", "whose", "whom"],
+      correct: "which"
     },
     {
-      question: "I have to work tomorrow.",
-      answers: ["Saya harus bekerja besok.", "Saya harus tidur besok.", "Saya harus makan besok.", "Saya harus pergi besok."],
-      correct: "Saya harus bekerja besok."
+      question: "I ___ my homework when my friend called.",
+      answers: ["do", "did", "was doing", "have done"],
+      correct: "was doing"
     },
     {
-      question: "What time do you usually wake up?",
-      answers: ["Jam berapa biasanya kamu bangun?", "Jam berapa biasanya kamu tidur?", "Jam berapa biasanya kamu makan?", "Jam berapa biasanya kamu mandi?"],
-      correct: "Jam berapa biasanya kamu bangun?"
+      question: "You look tired. You ___ take a rest.",
+      answers: ["must", "should", "would", "could"],
+      correct: "should"
     },
     {
-      question: "Do you have any plans today?",
-      answers: ["Apakah kamu punya rencana hari ini?", "Apakah kamu punya uang hari ini?", "Apakah kamu suka hari ini?", "Apakah kamu pergi hari ini?"],
-      correct: "Apakah kamu punya rencana hari ini?"
+      question: "They have ___ finished their project.",
+      answers: ["yet", "already", "still", "ever"],
+      correct: "already"
     },
     {
-      question: "Could you show me the way?",
-      answers: ["Bisakah kamu menunjukkan jalan?", "Bisakah kamu menolong saya?", "Bisakah kamu membeli saya?", "Bisakah kamu mendengar saya?"],
-      correct: "Bisakah kamu menunjukkan jalan?"
+      question: "The food tastes ___.",
+      answers: ["well", "goodly", "good", "betterly"],
+      correct: "good"
     },
     {
-      question: "I am looking for my keys.",
-      answers: ["Saya sedang mencari kunci saya.", "Saya sedang membuat kunci.", "Saya sedang membeli kunci.", "Saya sedang menjual kunci."],
-      correct: "Saya sedang mencari kunci saya."
+      question: "She asked me where I ___.",
+      answers: ["live", "lived", "living", "am living"],
+      correct: "lived"
     },
     {
-      question: "How long does it take?",
-      answers: ["Berapa lama waktunya?", "Berapa harganya?", "Di mana lokasinya?", "Siapa yang pergi?"],
-      correct: "Berapa lama waktunya?"
+      question: "What is the past tense of 'teach'?",
+      answers: ["teached", "taught", "teachted", "tought"],
+      correct: "taught"
     },
     {
-      question: "I can't find my phone.",
-      answers: ["Saya tidak bisa menemukan HP saya.", "Saya tidak bisa menggunakan HP.", "HP saya hilang.", "Saya lupa HP di rumah."],
-      correct: "HP saya hilang."
+      question: "We ___ go to the beach if the weather is nice.",
+      answers: ["can", "could", "might", "must"],
+      correct: "can"
     },
     {
-      question: "What should I do now?",
-      answers: ["Apa yang harus saya lakukan sekarang?", "Apa yang harus saya makan sekarang?", "Apa yang harus saya tidur sekarang?", "Apa yang harus saya beli sekarang?"],
-      correct: "Apa yang harus saya lakukan sekarang?"
+      question: "He runs ___ than his friend.",
+      answers: ["fast", "faster", "fastest", "more fast"],
+      correct: "faster"
     },
     {
-      question: "I need to take a break.",
-      answers: ["Saya perlu istirahat.", "Saya perlu belajar.", "Saya perlu bekerja.", "Saya perlu mandi."],
-      correct: "Saya perlu istirahat."
+      question: "I don't mind ___ late at night.",
+      answers: ["work", "to work", "working", "worked"],
+      correct: "working"
     },
     {
-      question: "Is there any discount?",
-      answers: ["Apakah ada diskon?", "Apakah ada hadiah?", "Apakah ada aturan?", "Apakah ada tiket?"],
-      correct: "Apakah ada diskon?"
+      question: "The letter ___ yesterday.",
+      answers: ["sent", "was sent", "is sent", "sends"],
+      correct: "was sent"
     },
     {
-      question: "I would like to make an appointment.",
-      answers: ["Saya ingin membuat janji.", "Saya ingin membeli janji.", "Saya ingin mengganti janji.", "Saya ingin menghapus janji."],
-      correct: "Saya ingin membuat janji."
+      question: "Which sentence uses the present perfect correctly?",
+      answers: ["I have saw that movie.", "I have seen that movie.", "I have seeing that movie.", "I seen that movie."],
+      correct: "I have seen that movie."
     },
     {
-      question: "Where can I buy a ticket?",
-      answers: ["Di mana saya bisa membeli tiket?", "Di mana saya bisa tidur?", "Di mana saya bisa mandi?", "Di mana saya bisa makan?"],
-      correct: "Di mana saya bisa membeli tiket?"
+      question: "The test was ___ difficult that nobody passed.",
+      answers: ["so", "such", "too", "very"],
+      correct: "so"
     },
     {
-      question: "I'm afraid I'm late.",
-      answers: ["Sepertinya saya terlambat.", "Sepertinya saya cepat.", "Sepertinya saya sakit.", "Sepertinya saya lapar."],
-      correct: "Sepertinya saya terlambat."
+      question: "He has ___ interest in sports.",
+      answers: ["a", "an", "the", "no article"],
+      correct: "no article"
     },
     {
-      question: "Do you mind opening the window?",
-      answers: ["Apakah kamu keberatan membuka jendela?", "Apakah kamu keberatan menutup pintu?", "Apakah kamu keberatan minum?", "Apakah kamu keberatan tidur?"],
-      correct: "Apakah kamu keberatan membuka jendela?"
+      question: "He is ___ honest man.",
+      answers: ["a", "an", "the", "no article"],
+      correct: "an"
     },
     {
-      question: "We should leave early.",
-      answers: ["Kita sebaiknya berangkat lebih awal.", "Kita sebaiknya pulang cepat.", "Kita sebaiknya berhenti sekarang.", "Kita sebaiknya tidur sekarang."],
-      correct: "Kita sebaiknya berangkat lebih awal."
+      question: "What does 'generous' mean?",
+      answers: ["Selfish", "Willing to give", "Lazy", "Angry"],
+      correct: "Willing to give"
     },
     {
-      question: "Could you repeat that, please?",
-      answers: ["Bisakah kamu mengulang itu, tolong?", "Bisakah kamu berhenti, tolong?", "Bisakah kamu tidur, tolong?", "Bisakah kamu pergi, tolong?"],
-      correct: "Bisakah kamu mengulang itu, tolong?"
+      question: "I am used to ___ up early.",
+      answers: ["get", "gets", "getting", "got"],
+      correct: "getting"
     }
   ],
   sulit: [
     {
-      question: "If I had more time, I would travel more.",
-      answers: ["Kalau aku punya lebih banyak waktu, aku akan bepergian lebih sering.", "Kalau aku punya waktu, aku akan tidur.", "Kalau aku punya uang, aku akan belajar.", "Kalau aku pergi, aku akan pulang."],
-      correct: "Kalau aku punya lebih banyak waktu, aku akan bepergian lebih sering."
+      question: "If I ___ you, I would accept the offer.",
+      answers: ["am", "were", "was", "be"],
+      correct: "were"
     },
     {
-      question: "By the time we arrived, the meeting had already started.",
-      answers: ["Saat kami sampai, rapatnya sudah dimulai.", "Saat kami sampai, rapatnya baru mulai.", "Saat kami sampai, rapatnya berhenti.", "Saat kami sampai, rapatnya selesai."],
-      correct: "Saat kami sampai, rapatnya sudah dimulai."
+      question: "By the time she arrives, we ___ dinner.",
+      answers: ["finish", "will finish", "will have finished", "finished"],
+      correct: "will have finished"
     },
     {
-      question: "I wish I could speak English fluently.",
-      answers: ["Saya berharap saya bisa berbicara bahasa Inggris dengan lancar.", "Saya ingin berbicara bahasa Inggris besok.", "Saya berharap saya tidak belajar.", "Saya ingin tidur."],
-      correct: "Saya berharap saya bisa berbicara bahasa Inggris dengan lancar."
+      question: "The report ___ by the team last week.",
+      answers: ["completed", "was completed", "has completed", "completes"],
+      correct: "was completed"
     },
     {
-      question: "No matter how hard I study, I still make mistakes.",
-      answers: ["Seberapa keras pun aku belajar, aku tetap membuat kesalahan.", "Kalau aku belajar, aku pasti benar.", "Aku belajar karena salah.", "Aku berhenti belajar."],
-      correct: "Seberapa keras pun aku belajar, aku tetap membuat kesalahan."
+      question: "I wish I ___ more time for hobbies.",
+      answers: ["have", "had", "would have", "am having"],
+      correct: "had"
     },
     {
-      question: "The instructions were so complicated that we couldn't follow them.",
-      answers: ["Petunjuknya begitu rumit sehingga kami tidak bisa mengikutinya.", "Petunjuknya sangat mudah sehingga kami cepat.", "Petunjuknya hilang.", "Petunjuknya terlalu pendek."],
-      correct: "Petunjuknya begitu rumit sehingga kami tidak bisa mengikutinya."
+      question: "He suggested that we ___ earlier.",
+      answers: ["leave", "left", "would leave", "leaving"],
+      correct: "leave"
     },
     {
-      question: "I regret not calling you earlier.",
-      answers: ["Saya menyesal tidak menelepon kamu lebih awal.", "Saya menyesal menelepon kamu.", "Saya senang menelepon kamu.", "Saya lupa menelepon kamu."],
-      correct: "Saya menyesal tidak menelepon kamu lebih awal."
+      question: "She apologized for ___ late.",
+      answers: ["be", "being", "been", "was"],
+      correct: "being"
     },
     {
-      question: "Would you mind if I used your phone for a moment?",
-      answers: ["Apakah kamu keberatan jika aku menggunakan HP kamu sebentar?", "Apakah kamu keberatan memakai HP aku?", "Apakah kamu keberatan tidur?", "Apakah kamu keberatan makan?"],
-      correct: "Apakah kamu keberatan jika aku menggunakan HP kamu sebentar?"
+      question: "The longer you wait, ___ it becomes.",
+      answers: ["the harder", "harder", "the more hard", "more hard"],
+      correct: "the harder"
     },
     {
-      question: "Hardly had I started when it began to rain.",
-      answers: ["Baru saja aku mulai ketika mulai hujan.", "Aku sudah lama mulai ketika hujan reda.", "Aku mulai lagi setelah hujan.", "Aku tidak mulai ketika hujan."],
-      correct: "Baru saja aku mulai ketika mulai hujan."
+      question: "Not only ___ the exam, but she also got the highest score.",
+      answers: ["she passed", "did she pass", "she pass", "passed she"],
+      correct: "did she pass"
     },
     {
-      question: "If you had told me the truth, I wouldn't have been angry.",
-      answers: ["Kalau kamu memberitahuku kebenarannya, aku tidak akan marah.", "Kalau kamu jujur, aku marah.", "Kalau kamu bohong, aku belajar.", "Kalau kamu bilang, aku tidur."],
-      correct: "Kalau kamu memberitahuku kebenarannya, aku tidak akan marah."
+      question: "I would rather ___ at home than go out.",
+      answers: ["stay", "to stay", "staying", "stayed"],
+      correct: "stay"
     },
     {
-      question: "Although she was tired, she continued working.",
-      answers: ["Meskipun dia lelah, dia tetap melanjutkan pekerjaannya.", "Karena dia lelah, dia berhenti.", "Dia lelah sehingga dia tertidur.", "Dia bekerja saat dia tidak lelah."],
-      correct: "Meskipun dia lelah, dia tetap melanjutkan pekerjaannya."
+      question: "He is known for ___ a great leader.",
+      answers: ["be", "being", "been", "was"],
+      correct: "being"
     },
     {
-      question: "The sooner you leave, the sooner you'll arrive.",
-      answers: ["Semakin cepat kamu pergi, semakin cepat kamu sampai.", "Semakin lambat kamu pergi, semakin cepat kamu sampai.", "Semakin cepat kamu tinggal, semakin cepat kamu pulang.", "Semakin lambat kamu sampai, semakin cepat kamu pergi."],
-      correct: "Semakin cepat kamu pergi, semakin cepat kamu sampai."
+      question: "What does 'break the ice' mean?",
+      answers: ["Break ice cubes", "Start a conversation", "End a fight", "Make someone cold"],
+      correct: "Start a conversation"
     },
     {
-      question: "I don't think he will call, even if you wait.",
-      answers: ["Saya tidak yakin dia akan menelepon, bahkan jika kamu menunggu.", "Saya yakin dia akan menelepon jika kamu menunggu.", "Dia akan menelepon sekarang.", "Dia tidak akan menelepon karena kamu marah."],
-      correct: "Saya tidak yakin dia akan menelepon, bahkan jika kamu menunggu."
+      question: "She demanded that he ___ the truth.",
+      answers: ["tell", "tells", "told", "telling"],
+      correct: "tell"
     },
     {
-      question: "We managed to finish the project before the deadline.",
-      answers: ["Kami berhasil menyelesaikan proyek itu sebelum tenggat waktu.", "Kami gagal menyelesaikan proyeknya.", "Kami menunggu sampai tenggat.", "Kami menghapus proyeknya."],
-      correct: "Kami berhasil menyelesaikan proyek itu sebelum tenggat waktu."
+      question: "No sooner ___ than the phone rang.",
+      answers: ["he left", "had he left", "he had left", "did he leave"],
+      correct: "had he left"
     },
     {
-      question: "The movie was so boring that I fell asleep.",
-      answers: ["Film itu begitu membosankan sampai aku tertidur.", "Film itu begitu seru sampai aku tertawa.", "Film itu pendek sampai selesai cepat.", "Film itu hilang dari bioskop."],
-      correct: "Film itu begitu membosankan sampai aku tertidur."
+      question: "This is the most ___ movie I have ever seen.",
+      answers: ["bore", "bored", "boring", "bores"],
+      correct: "boring"
     },
     {
-      question: "He apologized for what he said.",
-      answers: ["Dia meminta maaf atas apa yang dia katakan.", "Dia menyalahkan apa yang dia katakan.", "Dia tidak peduli apa yang dia katakan.", "Dia lupa apa yang dia katakan."],
-      correct: "Dia meminta maaf atas apa yang dia katakan."
+      question: "He was accused ___ stealing the money.",
+      answers: ["for", "of", "with", "about"],
+      correct: "of"
     },
     {
-      question: "I'm looking forward to meeting you.",
-      answers: ["Saya menantikan untuk bertemu dengan kamu.", "Saya menolak untuk bertemu dengan kamu.", "Saya tidak peduli bertemu dengan kamu.", "Saya menunggu kamu marah."],
-      correct: "Saya menantikan untuk bertemu dengan kamu."
+      question: "It's high time you ___ a decision.",
+      answers: ["make", "made", "to make", "making"],
+      correct: "made"
     },
     {
-      question: "She has been studying for three hours.",
-      answers: ["Dia sudah belajar selama tiga jam.", "Dia belajar tiga jam sekali.", "Dia sedang belajar satu jam.", "Dia belajar besok."],
-      correct: "Dia sudah belajar selama tiga jam."
+      question: "What is the synonym of 'abundant'?",
+      answers: ["Scarce", "Plentiful", "Limited", "Rare"],
+      correct: "Plentiful"
     },
     {
-      question: "By next week, I will have finished the report.",
-      answers: ["Minggu depan, saya akan sudah menyelesaikan laporan.", "Minggu depan, saya baru mulai.", "Minggu depan, laporan hilang.", "Minggu depan, saya tidak bekerja."],
-      correct: "Minggu depan, saya akan sudah menyelesaikan laporan."
+      question: "The scientist, along with his assistants, ___ present.",
+      answers: ["was", "were", "are", "have been"],
+      correct: "was"
     },
     {
-      question: "You should have told me earlier.",
-      answers: ["Seharusnya kamu memberitahu saya lebih awal.", "Kamu harus bilang sekarang.", "Kamu tidak boleh bilang.", "Kamu boleh lupa."],
-      correct: "Seharusnya kamu memberitahu saya lebih awal."
+      question: "She has a tendency ___ late.",
+      answers: ["arrive", "to arrive", "arriving", "arrived"],
+      correct: "to arrive"
     },
     {
-      question: "I wish you wouldn't smoke here.",
-      answers: ["Saya berharap kamu tidak merokok di sini.", "Saya ingin kamu merokok di sini.", "Saya berharap kamu tidur.", "Saya berharap kamu pergi."],
-      correct: "Saya berharap kamu tidak merokok di sini."
+      question: "Were it not for your help, I ___ failed.",
+      answers: ["will have", "would have", "have", "had"],
+      correct: "would have"
     }
   ],
   ekstrim: [
     {
-      question: "Not until the meeting was over did I realize my mistake.",
-      answers: ["Sampai rapat selesai aku baru sadar kesalahanku.", "Aku sadar sebelum rapat.", "Rapat selesai karena kesalahan.", "Aku tidak pernah sadar."],
-      correct: "Sampai rapat selesai aku baru sadar kesalahanku."
+      question: "Not until she arrived ___ the truth.",
+      answers: ["I knew", "did I know", "I had known", "I know"],
+      correct: "did I know"
     },
     {
-      question: "Were it not for your help, I would have failed.",
-      answers: ["Tanpa bantuanmu, aku pasti gagal.", "Karena bantuanmu aku gagal.", "Aku gagal meski dibantu.", "Bantuanmu tidak berguna."],
-      correct: "Tanpa bantuanmu, aku pasti gagal."
+      question: "Seldom ___ such a beautiful sunset.",
+      answers: ["I have seen", "have I seen", "I saw", "I see"],
+      correct: "have I seen"
     },
     {
-      question: "The more you practice, the better you become.",
-      answers: ["Semakin banyak berlatih, semakin baik hasilmu.", "Semakin banyak tidur, semakin sehat.", "Berlatih membuat lelah.", "Jangan pernah berlatih."],
-      correct: "Semakin banyak berlatih, semakin baik hasilmu."
+      question: "What does 'to call it a day' mean?",
+      answers: ["To start the day", "To stop working", "To name a date", "To make a phone call"],
+      correct: "To stop working"
     },
     {
-      question: "Having finished his work, he went home.",
-      answers: ["Setelah menyelesaikan pekerjaannya, dia pulang.", "Dia pulang sebelum bekerja.", "Pekerjaan selesai sendiri.", "Dia tidak pernah bekerja."],
-      correct: "Setelah menyelesaikan pekerjaannya, dia pulang."
+      question: "It is imperative that you ___ on time.",
+      answers: ["be", "are", "were", "will be"],
+      correct: "be"
     },
     {
-      question: "Not only did she win, but she also broke the record.",
-      answers: ["Dia tidak hanya menang, tapi juga memecahkan rekor.", "Dia kalah dan rekor pecah.", "Dia menang tanpa rekor.", "Dia tidak ikut lomba."],
-      correct: "Dia tidak hanya menang, tapi juga memecahkan rekor."
+      question: "The witness denied ___ the accused before.",
+      answers: ["see", "seeing", "to see", "saw"],
+      correct: "seeing"
     },
     {
-      question: "It is imperative that we leave now.",
-      answers: ["Sangat penting kita berangkat sekarang.", "Kita boleh pergi kapan saja.", "Tidak perlu terburu-buru.", "Berangkat besok saja."],
-      correct: "Sangat penting kita berangkat sekarang."
+      question: "Hardly ___ when the alarm went off.",
+      answers: ["I slept", "had I slept", "did I sleep", "I had slept"],
+      correct: "had I slept"
     },
     {
-      question: "He is known for being a jack of all trades.",
-      answers: ["Dia dikenal bisa melakukan banyak hal.", "Dia hanya bisa satu hal.", "Dia tidak bisa apa-apa.", "Dia ahli dalam satu bidang."],
-      correct: "Dia dikenal bisa melakukan banyak hal."
+      question: "He speaks ___ he knew everything.",
+      answers: ["as if", "like", "so", "such that"],
+      correct: "as if"
     },
     {
-      question: "They would rather starve than beg.",
-      answers: ["Mereka lebih baik kelaparan daripada mengemis.", "Mereka suka meminta-minta.", "Mereka tidak pernah lapar.", "Mereka kaya raya."],
-      correct: "Mereka lebih baik kelaparan daripada mengemis."
+      question: "What does 'once in a blue moon' mean?",
+      answers: ["Every month", "Very rarely", "Every night", "Once a year"],
+      correct: "Very rarely"
     },
     {
-      question: "The weather being bad, we canceled the trip.",
-      answers: ["Karena cuaca buruk, kami batalkan perjalanan.", "Cuaca cerah, kami pergi.", "Perjalanan tetap jalan meski hujan.", "Kami tidak punya rencana."],
-      correct: "Karena cuaca buruk, kami batalkan perjalanan."
+      question: "Under no circumstances ___ this door.",
+      answers: ["you should open", "should you open", "you open", "you must open"],
+      correct: "should you open"
     },
     {
-      question: "He speaks as if he knew everything.",
-      answers: ["Dia berbicara seolah tahu segalanya.", "Dia memang tahu segalanya.", "Dia diam saja.", "Dia tidak tahu apa-apa."],
-      correct: "Dia berbicara seolah tahu segalanya."
+      question: "She would rather ___ than ask for help.",
+      answers: ["fail", "to fail", "failing", "failed"],
+      correct: "fail"
     },
     {
-      question: "No sooner had we left than it started raining.",
-      answers: ["Baru saja kami pergi, hujan mulai turun.", "Kami pergi setelah hujan reda.", "Hujan turun sebelum kami pergi.", "Kami tidak jadi pergi."],
-      correct: "Baru saja kami pergi, hujan mulai turun."
+      question: "What is the meaning of 'bittersweet'?",
+      answers: ["Very sweet", "Both pleasant and painful", "Very bitter", "Sour"],
+      correct: "Both pleasant and painful"
     },
     {
-      question: "It goes without saying that honesty is important.",
-      answers: ["Tidak perlu dikatakan bahwa kejujuran itu penting.", "Kejujuran tidak penting.", "Semua orang boleh berbohong.", "Kejujuran hanya untuk anak-anak."],
-      correct: "Tidak perlu dikatakan bahwa kejujuran itu penting."
+      question: "It's no use ___ about the past.",
+      answers: ["worry", "to worry", "worrying", "worried"],
+      correct: "worrying"
     },
     {
-      question: "She devoted herself entirely to her career.",
-      answers: ["Dia mengabdikan dirinya sepenuhnya pada karir.", "Dia benci pekerjaannya.", "Dia malas bekerja.", "Karirnya hancur."],
-      correct: "Dia mengabdikan dirinya sepenuhnya pada karir."
+      question: "The proposal, ___ seemed promising, was rejected.",
+      answers: ["that", "which", "what", "who"],
+      correct: "which"
     },
     {
-      question: "The problem is far from being solved.",
-      answers: ["Masalahnya masih jauh dari selesai.", "Masalah sudah selesai.", "Tidak ada masalah.", "Masalahnya mudah."],
-      correct: "Masalahnya masih jauh dari selesai."
+      question: "What does 'to go the extra mile' mean?",
+      answers: ["To travel far", "To make extra effort", "To run a race", "To drive fast"],
+      correct: "To make extra effort"
     },
     {
-      question: "On no account should you open this door.",
-      answers: ["Dalam kondisi apapun jangan buka pintu ini.", "Buka pintu kapan saja.", "Pintu ini selalu terbuka.", "Tidak masalah buka pintu."],
-      correct: "Dalam kondisi apapun jangan buka pintu ini."
+      question: "Were I in your position, I ___ differently.",
+      answers: ["act", "would act", "will act", "acted"],
+      correct: "would act"
     },
     {
-      question: "Little did they know that danger was near.",
-      answers: ["Mereka tidak tahu bahwa bahaya sudah dekat.", "Mereka tahu ada bahaya.", "Bahaya tidak ada.", "Mereka siap menghadapi bahaya."],
-      correct: "Mereka tidak tahu bahwa bahaya sudah dekat."
+      question: "The manager insisted that the report ___ by Friday.",
+      answers: ["is submitted", "be submitted", "submits", "submitted"],
+      correct: "be submitted"
     },
     {
-      question: "Contrary to popular belief, the earth is round.",
-      answers: ["Bertentangan dengan kepercayaan umum, bumi itu bulat.", "Semua orang tahu bumi bulat.", "Bumi itu datar.", "Bumi itu kotak."],
-      correct: "Bertentangan dengan kepercayaan umum, bumi itu bulat."
+      question: "What does 'to burn the midnight oil' mean?",
+      answers: ["To waste fuel", "To study or work late", "To cook at night", "To start a fire"],
+      correct: "To study or work late"
     },
     {
-      question: "He was charged with having stolen the money.",
-      answers: ["Dia dituduh telah mencuri uang itu.", "Dia dipuji karena mencuri.", "Uang itu miliknya.", "Dia tidak bersalah."],
-      correct: "Dia dituduh telah mencuri uang itu."
+      question: "Such ___ that everyone was speechless.",
+      answers: ["was his anger", "his anger was", "angry he was", "was he angry"],
+      correct: "was his anger"
     },
     {
-      question: "Such was his anger that he could not speak.",
-      answers: ["Begitu marahnya dia sampai tidak bisa bicara.", "Dia bicara dengan marah.", "Dia tidak marah.", "Dia tertawa terbahak-bahak."],
-      correct: "Begitu marahnya dia sampai tidak bisa bicara."
+      question: "The CEO, together with the board members, ___ the decision.",
+      answers: ["approve", "approves", "are approving", "have approved"],
+      correct: "approves"
     },
     {
-      question: "All things considered, this is the best option.",
-      answers: ["Semua hal dipertimbangkan, ini pilihan terbaik.", "Ini pilihan terburuk.", "Tidak ada pilihan lain.", "Semua pilihan sama saja."],
-      correct: "Semua hal dipertimbangkan, ini pilihan terbaik."
+      question: "What does 'to play devil's advocate' mean?",
+      answers: ["To argue for the opposite side", "To defend evil", "To play a game", "To blame someone"],
+      correct: "To argue for the opposite side"
     }
   ]
 };

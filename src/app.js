@@ -46,11 +46,11 @@ const ui = {
 
 // ===== CONSTANTS =====
 const LEVELS = [
-  { key: 'pemula', label: 'Pemula', points: 5 },
-  { key: 'mudah', label: 'Mudah', points: 10 },
-  { key: 'sedang', label: 'Sedang', points: 15 },
-  { key: 'sulit', label: 'Sulit', points: 20 },
-  { key: 'ekstrim', label: 'Ekstrim', points: 25 }
+  { key: 'pemula', label: 'Beginner', points: 5 },
+  { key: 'mudah', label: 'Easy', points: 10 },
+  { key: 'sedang', label: 'Medium', points: 15 },
+  { key: 'sulit', label: 'Hard', points: 20 },
+  { key: 'ekstrim', label: 'Extreme', points: 25 }
 ];
 
 const QUESTIONS_PER_LEVEL = 10;
@@ -105,13 +105,13 @@ function renderLeaderboard(currentScore = null) {
   ui.leaderboardBody.innerHTML = '';
 
   if (board.length === 0) {
-    ui.leaderboardBody.innerHTML = '<div class="leaderboard-empty">Belum ada skor. Jadilah yang pertama!</div>';
+    ui.leaderboardBody.innerHTML = '<div class="leaderboard-empty">No scores yet. Be the first!</div>';
     return;
   }
 
   board.forEach((entry, i) => {
     const isCurrent = currentScore !== null && entry.score === currentScore &&
-                      entry.date === new Date().toLocaleDateString('id-ID');
+                      entry.date === new Date().toLocaleDateString('en-US');
 
     const item = document.createElement('div');
     item.className = `leaderboard-item${isCurrent ? ' current-player' : ''}`;
@@ -124,7 +124,7 @@ function renderLeaderboard(currentScore = null) {
       <div class="leaderboard-info">
         <div class="leaderboard-level">Level ${entry.level}</div>
         <div class="leaderboard-date">${entry.date}</div>
-      ${isCurrent ? '<span class="leaderboard-badge-new">Baru</span>' : ''}
+      ${isCurrent ? '<span class="leaderboard-badge-new">New</span>' : ''}
     `;
 
     ui.leaderboardBody.appendChild(item);
@@ -217,7 +217,7 @@ function updateProgressBar() {
   const total = gameState.levelQuestions.length;
   const pct = Math.min((gameState.questionIndex) / total * 100, 100);
   ui.progressFill.style.width = `${pct}%`;
-  ui.progressLabel.textContent = `Soal ${Math.min(gameState.questionIndex + 1, total)}/${total}`;
+  ui.progressLabel.textContent = `Question ${Math.min(gameState.questionIndex + 1, total)}/${total}`;
 }
 
 function renderQuestion() {
@@ -231,9 +231,9 @@ function renderQuestion() {
     return;
   }
 
-  ui.questionNumber.textContent = `Soal #${gameState.questionIndex + 1}`;
+  ui.questionNumber.textContent = `Question #${gameState.questionIndex + 1}`;
   ui.questionEl.textContent = q.question;
-  ui.hintEl.textContent = "Pilih jawaban yang benar di bawah ini.";
+  ui.hintEl.textContent = "Choose the correct answer below.";
   ui.answerButtonsEl.innerHTML = '';
 
   updateProgressBar();
@@ -280,9 +280,9 @@ function selectAnswer(isCorrect, correctAnswer, allAnswers, selectedBtn) {
     gameState.correctCount++;
     gameState.overallCorrectCount++;
     ui.scoreDisplay.textContent = gameState.score;
-    setFeedback('Benar', 'correct');
+    setFeedback('Correct!', 'correct');
   } else {
-    setFeedback(`Salah. Jawaban: ${correctAnswer}`, 'wrong');
+    setFeedback(`Wrong! Answer: ${correctAnswer}`, 'wrong');
   }
 
   gameState.overallTotalAnswered++;
@@ -324,7 +324,7 @@ function handleTimeout() {
     }
   });
 
-  setFeedback(`Waktu habis. Jawaban: ${correct}`, 'wrong');
+  setFeedback(`Time's up! Answer: ${correct}`, 'wrong');
 
   setTimeout(() => {
     gameState.locked = false;
@@ -351,12 +351,12 @@ function showLevelComplete(completedLevelIndex) {
   ui.levelCompleteBox.classList.remove('hide');
 
   const completedLevel = LEVELS[completedLevelIndex];
-  ui.levelCompleteTitle.textContent = `Level ${completedLevel.label} Selesai`;
-  ui.levelCompleteSubtitle.textContent = `Skor: ${gameState.score}`;
+  ui.levelCompleteTitle.textContent = `Level ${completedLevel.label} Complete`;
+  ui.levelCompleteSubtitle.textContent = `Score: ${gameState.score}`;
 
   ui.levelCompleteScores.innerHTML = `
-    <span>Benar: ${gameState.correctCount}/${gameState.totalAnswered}</span>
-    <span>Skor level: +${gameState.correctCount * completedLevel.points}</span>
+    <span>Correct: ${gameState.correctCount}/${gameState.totalAnswered}</span>
+    <span>Level Score: +${gameState.correctCount * completedLevel.points}</span>
   `;
 
   gameState.correctCount = 0;
@@ -366,9 +366,9 @@ function showLevelComplete(completedLevelIndex) {
   ui.nextLevelBtn.classList.toggle('hide', isLastLevel);
 
   if (isLastLevel) {
-    ui.playAgainBtn.textContent = 'Lihat Hasil';
+    ui.playAgainBtn.textContent = 'View Results';
   } else {
-    ui.playAgainBtn.textContent = 'Selesai';
+    ui.playAgainBtn.textContent = 'Finish';
   }
 }
 
@@ -385,7 +385,7 @@ function endGame() {
   ui.scoreBox.classList.remove('hide');
 
   ui.finalScoreEl.textContent = gameState.score;
-  ui.finalLevel.textContent = LEVELS[gameState.levelIndex]?.label || 'Selesai';
+  ui.finalLevel.textContent = LEVELS[gameState.levelIndex]?.label || 'Finished';
   ui.finalCorrect.textContent = gameState.overallCorrectCount;
   ui.finalTotal.textContent = gameState.overallTotalAnswered;
 
@@ -394,15 +394,15 @@ function endGame() {
 
   let grade, stars, emoji;
   if (ratio >= 0.9) {
-    grade = 'S+'; stars = 'Bintang 3'; emoji = 'Trophy';
+    grade = 'S+'; stars = '3 Stars'; emoji = '🏆';
   } else if (ratio >= 0.75) {
-    grade = 'A'; stars = 'Bintang 3'; emoji = 'Emas';
+    grade = 'A'; stars = '3 Stars'; emoji = '🥇';
   } else if (ratio >= 0.6) {
-    grade = 'B'; stars = 'Bintang 2'; emoji = 'Perak';
+    grade = 'B'; stars = '2 Stars'; emoji = '🥈';
   } else if (ratio >= 0.4) {
-    grade = 'C'; stars = 'Bintang 1'; emoji = 'Perunggu';
+    grade = 'C'; stars = '1 Star'; emoji = '🥉';
   } else {
-    grade = 'D'; stars = 'Tidak Ada'; emoji = 'Semangat';
+    grade = 'D'; stars = 'None'; emoji = '💪';
   }
 
   ui.scoreGrade.textContent = grade;
@@ -416,7 +416,7 @@ function endGame() {
     const entry = {
       score: gameState.score,
       level: LEVELS[Math.min(gameState.levelIndex, LEVELS.length - 1)]?.label || '-',
-      date: new Date().toLocaleDateString('id-ID'),
+      date: new Date().toLocaleDateString('en-US'),
     };
     saveLeaderboard(entry);
 
@@ -504,7 +504,7 @@ ui.nextLevelBtn?.addEventListener('click', () => {
 ui.achievementCloseBtn?.addEventListener('click', hideAchievement);
 
 ui.clearLeaderboardBtn?.addEventListener('click', () => {
-  if (confirm('Hapus semua riwayat skor?')) {
+  if (confirm('Clear all score history?')) {
     localStorage.removeItem(STORAGE_KEY);
     renderLeaderboard();
   }
