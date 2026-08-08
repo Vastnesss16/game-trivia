@@ -1,6 +1,5 @@
 import { triviaQuestions } from './question.js';
 
-// ===== UI ELEMENTS =====
 const ui = {
   levelBadge: document.getElementById('level-badge'),
   scoreDisplay: document.getElementById('score-value'),
