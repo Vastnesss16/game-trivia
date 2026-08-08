@@ -38,10 +38,13 @@ const ui = {
   leaderboardBody: document.getElementById('leaderboard-body'),
   clearLeaderboardBtn: document.getElementById('clear-leaderboard-btn'),
 
-  achievementOverlay: document.getElementById('achievement-overlay'),
+achievementOverlay: document.getElementById('achievement-overlay'),
   achievementScore: document.getElementById('achievement-score'),
   achievementCloseBtn: document.getElementById('achievement-close-btn'),
   confettiContainer: document.getElementById('confetti-container'),
+
+  homeScreen: document.getElementById('home-screen'),
+  homePlayBtn: document.getElementById('home-play-btn'),
 };
 
 // ===== CONSTANTS =====
@@ -486,7 +489,23 @@ function startGame() {
   renderQuestion();
 }
 
+// ===== HOME SCREEN =====
+function showHome() {
+  stopTimer();
+  ui.homeScreen.classList.remove('hide');
+  ui.quizBox.classList.add('hide');
+  ui.scoreBox.classList.add('hide');
+  ui.levelCompleteBox.classList.add('hide');
+  hideAchievement();
+}
+
+function startPlay() {
+  ui.homeScreen.classList.add('hide');
+  startGame();
+}
+
 // ===== EVENT LISTENERS =====
+ui.homePlayBtn?.addEventListener('click', startPlay);
 ui.restartBtn?.addEventListener('click', startGame);
 
 ui.playAgainBtn?.addEventListener('click', () => {
@@ -512,4 +531,4 @@ ui.clearLeaderboardBtn?.addEventListener('click', () => {
 
 // ===== INIT =====
 renderLeaderboard();
-startGame();
+showHome();
