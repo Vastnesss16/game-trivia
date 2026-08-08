@@ -1,37 +1,21 @@
-# ✅ Game Trivia — Fully Translated to English
+# Game Trivia — English Localization Plan
 
-## Completed
+## Completed Steps
 
-- [x] **src/question.js** — All 100 questions (20 per level) replaced with English-only grammar & vocabulary questions:
-  - **pemula** → **Beginner** (basic vocabulary, colors, numbers, animals)
-  - **mudah** → **Easy** (simple grammar, prepositions, to be, present tenses)
-  - **sedang** → **Medium** (past tense, future tense, comparatives, modals)
-  - **sulit** → **Hard** (conditionals, passive voice, perfect tenses, subjunctive)
-  - **ekstrim** → **Extreme** (inversions, idioms, advanced structures)
+- [x] Analyze all files (question.js, app.js, index.html, style.css, script.js)
 
-- [x] **index.html** — All UI text translated:
-  - "Soal" → "Question"
-  - "Level Selesai!" → "Level Complete!"
-  - "Game Selesai!" → "Game Over!"
-  - "Skor Akhir" → "Final Score"
-  - "Benar" → "Correct"
-  - "Main Lagi" → "Play Again"
-  - "Selanjutnya" → "Next"
-  - "Papan Peringkat" → "Leaderboard"
-  - "Hapus Riwayat" → "Clear History"
-  - "Luar Biasa!" → "Awesome!"
-  - etc.
+## Progress
 
-- [x] **src/app.js** — All JS text references translated:
-  - Feedback: "Benar" → "Correct!", "Salah" → "Wrong!"
-  - Hint: "Pilih jawaban..." → "Choose the correct answer..."
-  - Timeout: "Waktu habis" → "Time's up!"
-  - Leadboard: "Baru" → "New"
-  - Level labels: Beginner, Easy, Medium, Hard, Extreme
-  - Confirm: "Hapus semua riwayat skor?" → "Clear all score history?"
-  - Date locale: `id-ID` → `en-US`
-  - Empty: "Belum ada skor" → "No scores yet"
-  - Level complete: "Level ... Selesai" → "Level ... Complete"
-  - Score grade text (stars: "Bintang 3" → "3 Stars")
-  - etc.
+- [x] Step 1: Edit question.js — pemula level (English basic vocabulary)
+- [x] Step 1: Edit question.js — mudah level (English elementary grammar)
+- [x] Step 1: Edit question.js — sedang level (English intermediate grammar)
+- [x] Step 1: Edit question.js — sulit level (English upper-intermediate grammar)
+- [x] Step 1: Edit question.js — ekstrim level (English advanced grammar)
+- [x] Step 2: Edit app.js — UI text from Indonesian to English
+- [x] Step 3: Edit index.html — UI markup from Indonesian to English
+- [ ] Step 4: Test the game
 
+## Notes
+- All questions now in English with increasing difficulty across 5 levels
+- Level labels: Beginner, Easy, Medium, Hard, Extreme
+- UI text fully in English
